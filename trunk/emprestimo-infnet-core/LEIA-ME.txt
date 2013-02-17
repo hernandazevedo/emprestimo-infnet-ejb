@@ -15,3 +15,4 @@ Identificação das entidades e associações
 			Supervisor de CallCenter
 			Gerente
 			Funcionário Balcão
+9-Emprestimo << entidade principal do sistema
