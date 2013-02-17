@@ -26,13 +26,13 @@ public class EmprestimoBean implements Emprestimo {
 	public MensagemRetornoBeanWS solicitarEmprestimo(EmprestimoDTO emprestimoDTO) {
 		MensagemRetornoBeanWS retorno = null;
 		
-		//RN1
+		//RN1 TODO colocar os parametros no metodo de validação abaixo conforme a necessidade
 		if(!isClienteCadastroAtivo()){
 			throw new BusinessException("Cliente não possui cadastro ativo no sistema");
 		}
 		
 		
-		//RN2 -- TODO colocar os parametros no metodo de validação abaixo conforme a necessidade
+		//RN2 TODO colocar os parametros no metodo de validação abaixo conforme a necessidade
 		if(!isEmprestivoAtivoMesmaInstituicao()){
 			throw new BusinessException("Cliente não pode solicitar um novo empréstimo, possui emprestimo ativo na instituição");
 		}
