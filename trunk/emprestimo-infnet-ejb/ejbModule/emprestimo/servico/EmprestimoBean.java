@@ -1,16 +1,21 @@
 package emprestimo.servico;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateful;
 
 import servicos.Emprestimo;
 import servicos.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
 import dominio.dto.ContratoEmprestimoDTO;
+import dominio.dto.EmpregadoDTO;
 import emprestimo.exeptions.BusinessException;
 @Stateful
 public class EmprestimoBean implements Emprestimo {
 
-	
+	private static List<ContratoEmprestimoDTO> contratoEmprestimos = mockContratoEmprestimos();
+	private static List<EmpregadoDTO> empregadosCadastrados = mockEmpregados();
 	
 	
 	/**
@@ -33,7 +38,7 @@ public class EmprestimoBean implements Emprestimo {
 		
 		
 		//RN2 TODO colocar os parametros no metodo de validação abaixo conforme a necessidade
-		if(!isEmprestivoAtivoMesmaInstituicao()){
+		if(isEmprestivoAtivoMesmaInstituicao()){
 			throw new BusinessException("Cliente não pode solicitar um novo empréstimo, possui emprestimo ativo na instituição");
 		}
 		
@@ -43,7 +48,10 @@ public class EmprestimoBean implements Emprestimo {
 		//TODO realizar a solicitação de emprestimo
 		try{
 			//Trecho de emprestimo aqui....
+			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			//SETAR OS DADOS
 			
+			salvarEmprestimo(contrato);
 			
 			
 		}catch (Exception e) {
@@ -56,13 +64,57 @@ public class EmprestimoBean implements Emprestimo {
 		return retorno;
 	}
 
+	
+	private void salvarEmprestimo(ContratoEmprestimoDTO contrato) {
+		contratoEmprestimos.add(contrato);
+		
+	}
+
+
+	/**
+	 * Mock da lista inicial de empregados
+	 * @return
+	 */
+	private static List<EmpregadoDTO> mockEmpregados() {
+		if(empregadosCadastrados == null){
+			empregadosCadastrados = new ArrayList<EmpregadoDTO>();
+			EmpregadoDTO e1 = new EmpregadoDTO();
+			//TODO preencher os dados do empregado
+			empregadosCadastrados.add(e1);
+			
+		}
+		return empregadosCadastrados;
+	}
+	/**
+	 * Mock da lista inicial de emprestimos contratados 
+	 * @return
+	 */
+	private static List<ContratoEmprestimoDTO> mockContratoEmprestimos() {
+		
+		if(contratoEmprestimos == null){
+			contratoEmprestimos = new ArrayList<ContratoEmprestimoDTO>();
+			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO();
+			//TODO preencher os dados do empregado
+			contratoEmprestimos.add(c1);
+			
+		}
+		return contratoEmprestimos;
+	}
+
 	/**
 	 * Valida se o cliente possui emprestimo ativo nesta instituição
 	 * @return
 	 */
 	private boolean isEmprestivoAtivoMesmaInstituicao() {
-		// TODO Auto-generated method stub
-		return true;
+		//utilizar a lista
+		boolean flag = false;
+		for(ContratoEmprestimoDTO c :contratoEmprestimos){
+			//TODO validar se o emprestimo esta ativo para a mesma instituicao
+			if(1 == 1){
+				flag = true;
+			}
+		}
+		return flag;
 	}
 
 
@@ -71,9 +123,15 @@ public class EmprestimoBean implements Emprestimo {
 	 * @return
 	 */
 	private boolean isClienteCadastroAtivo() {
-		// TODO Auto-generated method stub
+		boolean flag = false;
+		for(EmpregadoDTO em:empregadosCadastrados){
+			
+			if(1==1){
+				flag = true;
+			}
+		}
 		
-		return true;
+		return flag;
 	}
 
 	
