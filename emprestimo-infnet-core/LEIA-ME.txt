@@ -2,10 +2,10 @@ Projeto: EmprestimoInfnet
 
 Identificação das entidades e associações
 
-1-InstituicaoFinanceira >> possui associacao de convenio com EmpresaConvenente
+1-InstituicaoFinanceira >> possui os planos >> possui associacao de convenio com EmpresaConvenente
 2-PlanoEmprestimo
 3-EmpresaConvenente >> possui varios Empregados
-4-Convenio >> possui varios planos
+4-Convenio >> associa uma instituicao financeira a uma EmpresaConvenente
 5-Empregado >> pertence a EmpresaConvenente
 6-ContratoEmprestimo >> é solicitado por empregado
 7-Funcionario >> Responsavel por operar o sistema de Emprestimo da Ativa
