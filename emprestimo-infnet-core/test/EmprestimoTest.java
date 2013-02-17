@@ -11,7 +11,7 @@ import org.junit.Test;
 import servicos.Emprestimo;
 import servicos.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
-import dominio.dto.EmprestimoDTO;
+import dominio.dto.ContratoEmprestimoDTO;
 
 
 public class EmprestimoTest {
@@ -36,7 +36,7 @@ public class EmprestimoTest {
 			 
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
-		    retorno  = remote.solicitarEmprestimo(new EmprestimoDTO());
+		    retorno  = remote.solicitarEmprestimo(new ContratoEmprestimoDTO());
 			
 			
 		} catch (NamingException e) {

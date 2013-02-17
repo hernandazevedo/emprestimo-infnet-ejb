@@ -2,7 +2,7 @@ package servicos;
 
 import javax.ejb.Remote;
 
-import dominio.dto.EmprestimoDTO;
+import dominio.dto.ContratoEmprestimoDTO;
 
 @Remote
 public interface Emprestimo {
@@ -12,6 +12,6 @@ public interface Emprestimo {
 	 * @param emprestimoDTO
 	 * @return
 	 */
-	MensagemRetornoBeanWS solicitarEmprestimo(EmprestimoDTO emprestimoDTO);
-	MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(EmprestimoDTO emprestimoDTO);
+	MensagemRetornoBeanWS solicitarEmprestimo(ContratoEmprestimoDTO emprestimoDTO);
+	MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(ContratoEmprestimoDTO emprestimoDTO);
 }
