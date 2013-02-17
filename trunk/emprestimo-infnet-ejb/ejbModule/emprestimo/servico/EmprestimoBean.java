@@ -5,7 +5,7 @@ import javax.ejb.Stateful;
 import servicos.Emprestimo;
 import servicos.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
-import dominio.dto.EmprestimoDTO;
+import dominio.dto.ContratoEmprestimoDTO;
 import emprestimo.exeptions.BusinessException;
 @Stateful
 public class EmprestimoBean implements Emprestimo {
@@ -23,7 +23,7 @@ public class EmprestimoBean implements Emprestimo {
 	RN2 - Não pode solicitar um novo empréstimo, se já possuir um ativo numa mesma instituição financeira.
 
 	 */
-	public MensagemRetornoBeanWS solicitarEmprestimo(EmprestimoDTO emprestimoDTO) {
+	public MensagemRetornoBeanWS solicitarEmprestimo(ContratoEmprestimoDTO emprestimoDTO) {
 		MensagemRetornoBeanWS retorno = null;
 		
 		//RN1 TODO colocar os parametros no metodo de validação abaixo conforme a necessidade
@@ -62,7 +62,7 @@ public class EmprestimoBean implements Emprestimo {
 	 */
 	private boolean isEmprestivoAtivoMesmaInstituicao() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
@@ -73,14 +73,14 @@ public class EmprestimoBean implements Emprestimo {
 	private boolean isClienteCadastroAtivo() {
 		// TODO Auto-generated method stub
 		
-		return false;
+		return true;
 	}
 
 	
 	
 	
 	public MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(
-			EmprestimoDTO emprestimoDTO) {
+			ContratoEmprestimoDTO emprestimoDTO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
