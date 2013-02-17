@@ -30,9 +30,9 @@ public class EmprestimoTest {
 		MensagemRetornoBeanWS retorno = null;
 		 try {
 			 		
-			initialContext = configuraContext();
+//			initialContext = configuraContext();
 			 
-//			initialContext = new InitialContext();
+			initialContext = new InitialContext();
 			 
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
