@@ -76,5 +76,14 @@ public class EmprestimoBean implements Emprestimo {
 		return false;
 	}
 
+	
+	
+	
+	public MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(
+			EmprestimoDTO emprestimoDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 

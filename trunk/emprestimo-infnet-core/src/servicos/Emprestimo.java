@@ -13,4 +13,5 @@ public interface Emprestimo {
 	 * @return
 	 */
 	MensagemRetornoBeanWS solicitarEmprestimo(EmprestimoDTO emprestimoDTO);
+	MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(EmprestimoDTO emprestimoDTO);
 }
