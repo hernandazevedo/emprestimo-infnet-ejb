@@ -41,6 +41,8 @@ public class EmprestimoTest {
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
+		} catch(Exception e){
+			e.printStackTrace();
 		}
 		 
 		 Assert.assertTrue(retorno != null);
