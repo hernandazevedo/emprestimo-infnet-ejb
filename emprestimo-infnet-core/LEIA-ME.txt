@@ -7,7 +7,7 @@ Identificação das entidades e associações
 3-EmpresaConvenente >> possui varios Empregados
 4-Convenio >> associa uma instituicao financeira a uma EmpresaConvenente
 5-Empregado >> pertence a EmpresaConvenente
-6-ContratoEmprestimo >> é solicitado por empregado
+6-ContratoEmprestimo >> é solicitado por empregado <<<<<<<<<<<<<<< entidade principal do sistema
 7-Funcionario >> Responsavel por operar o sistema de Emprestimo da Ativa
 8-PerfilFuncionario >> perfil do funcionario que pode ser :
 			Corretor
@@ -15,4 +15,3 @@ Identificação das entidades e associações
 			Supervisor de CallCenter
 			Gerente
 			Funcionário Balcão
-9-Emprestimo << entidade principal do sistema
