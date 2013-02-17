@@ -1,21 +1,21 @@
 package emprestimo.servico;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ejb.Stateful;
 
 import servicos.Emprestimo;
 import servicos.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
+import dominio.dao.ContratoEmprestimoDAO;
+import dominio.dao.EmpregadoDAO;
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.EmpregadoDTO;
 import emprestimo.exeptions.BusinessException;
 @Stateful
 public class EmprestimoBean implements Emprestimo {
 
-	private static List<ContratoEmprestimoDTO> contratoEmprestimos = mockContratoEmprestimos();
-	private static List<EmpregadoDTO> empregadosCadastrados = mockEmpregados();
+	//Singletons que mantem os dados mockados
+	private static ContratoEmprestimoDAO contratosDAO = ContratoEmprestimoDAO.getInstance();
+	private static EmpregadoDAO empregadoDAO = EmpregadoDAO.getInstance();
 	
 	
 	/**
@@ -66,40 +66,11 @@ public class EmprestimoBean implements Emprestimo {
 
 	
 	private void salvarEmprestimo(ContratoEmprestimoDTO contrato) {
-		contratoEmprestimos.add(contrato);
+		contratosDAO.salvarContratoEmprestimo(contrato);
 		
 	}
 
-
-	/**
-	 * Mock da lista inicial de empregados
-	 * @return
-	 */
-	private static List<EmpregadoDTO> mockEmpregados() {
-		if(empregadosCadastrados == null){
-			empregadosCadastrados = new ArrayList<EmpregadoDTO>();
-			EmpregadoDTO e1 = new EmpregadoDTO();
-			//TODO preencher os dados do empregado
-			empregadosCadastrados.add(e1);
-			
-		}
-		return empregadosCadastrados;
-	}
-	/**
-	 * Mock da lista inicial de emprestimos contratados 
-	 * @return
-	 */
-	private static List<ContratoEmprestimoDTO> mockContratoEmprestimos() {
-		
-		if(contratoEmprestimos == null){
-			contratoEmprestimos = new ArrayList<ContratoEmprestimoDTO>();
-			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO();
-			//TODO preencher os dados do empregado
-			contratoEmprestimos.add(c1);
-			
-		}
-		return contratoEmprestimos;
-	}
+	
 
 	/**
 	 * Valida se o cliente possui emprestimo ativo nesta instituição
@@ -108,7 +79,7 @@ public class EmprestimoBean implements Emprestimo {
 	private boolean isEmprestivoAtivoMesmaInstituicao() {
 		//utilizar a lista
 		boolean flag = false;
-		for(ContratoEmprestimoDTO c :contratoEmprestimos){
+		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
 			//TODO validar se o emprestimo esta ativo para a mesma instituicao
 			if(1 == 1){
 				flag = true;
@@ -124,7 +95,7 @@ public class EmprestimoBean implements Emprestimo {
 	 */
 	private boolean isClienteCadastroAtivo() {
 		boolean flag = false;
-		for(EmpregadoDTO em:empregadosCadastrados){
+		for(EmpregadoDTO em:empregadoDAO.getEmpregados()){
 			
 			if(1==1){
 				flag = true;
