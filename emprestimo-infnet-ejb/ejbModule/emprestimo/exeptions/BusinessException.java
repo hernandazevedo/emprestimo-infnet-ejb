@@ -2,8 +2,6 @@ package emprestimo.exeptions;
 
 import javax.ejb.EJBException;
 
-import servicos.enums.EnumMensagemRetorno;
-
 public class BusinessException extends EJBException {
 	
 	/**
