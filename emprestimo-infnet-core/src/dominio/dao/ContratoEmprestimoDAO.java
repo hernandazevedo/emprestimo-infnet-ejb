@@ -17,6 +17,9 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	
 	private List<ContratoEmprestimoDTO> contratoEmprestimos = mockContratoEmprestimos();
 	
+	private ContratoEmprestimoDAO(){
+		
+	}
 	
 	/**
 	 * Mock da lista inicial de emprestimos contratados 
