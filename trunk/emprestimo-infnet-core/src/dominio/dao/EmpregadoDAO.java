@@ -17,6 +17,9 @@ public class EmpregadoDAO  implements Serializable{
 	
 	private List<EmpregadoDTO> empregados = mockEmpregados();
 	
+	private EmpregadoDAO(){
+		
+	}
 	
 	/**
 	 * Mock da lista inicial de emprestimos contratados 
