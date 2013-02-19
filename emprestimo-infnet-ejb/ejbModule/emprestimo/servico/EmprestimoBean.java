@@ -116,7 +116,7 @@ public class EmprestimoBean implements Emprestimo {
 	
 	 * (non-Javadoc)
 	 * @see servicos.Emprestimo#solicitarRefinanciamentoEmprestimo(dominio.dto.ContratoEmprestimoDTO)
-	 */
+	 */ 
 	public MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(
 			ContratoEmprestimoDTO emprestimoDTO) {
 		MensagemRetornoBeanWS retorno = null;
