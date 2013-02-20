@@ -49,16 +49,16 @@ public class EmprestimoTest {
 		 Assert.assertEquals(EnumMensagemRetorno.OK.getCodigo(), retorno.getCodigo());
 	}
 	
-	private static InitialContext configuraContext() throws NamingException {
-		Properties props = new Properties();
-		props.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
-		props.put(Context.PROVIDER_URL, "remote://localhost:4447");
-		props.put(Context.SECURITY_PRINCIPAL, "usuarioRemoto");
-		props.put(Context.SECURITY_CREDENTIALS, "infnet123");
-		props.put("jboss.naming.client.ejb.context", true);
-		InitialContext initialContext = new InitialContext(props);
-		return initialContext;
-	}
+//	private static InitialContext configuraContext() throws NamingException {
+//		Properties props = new Properties();
+//		props.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
+//		props.put(Context.PROVIDER_URL, "remote://localhost:4447");
+//		props.put(Context.SECURITY_PRINCIPAL, "usuarioRemoto");
+//		props.put(Context.SECURITY_CREDENTIALS, "infnet123");
+//		props.put("jboss.naming.client.ejb.context", true);
+//		InitialContext initialContext = new InitialContext(props);
+//		return initialContext;
+//	}
 
 
 }
