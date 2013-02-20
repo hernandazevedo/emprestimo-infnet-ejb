@@ -26,12 +26,19 @@ public class EmpregadoDAO  implements Serializable{
 	 * @return
 	 */
 	private List<EmpregadoDTO> mockEmpregados() {
-		
+
 		if(empregados == null){
 			empregados = new ArrayList<EmpregadoDTO>();
+			//TODO SETAR OS ATRIBUTOS EM CADA
 			EmpregadoDTO e1 = new EmpregadoDTO();
+			EmpregadoDTO e2 = new EmpregadoDTO();
+			EmpregadoDTO e3 = new EmpregadoDTO();
+			EmpregadoDTO e4 = new EmpregadoDTO();
 			//TODO preencher os dados do empregado
 			empregados.add(e1);
+			empregados.add(e2);
+			empregados.add(e3);
+			empregados.add(e4);
 			
 		}
 		return empregados;

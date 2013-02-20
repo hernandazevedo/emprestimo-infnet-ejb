@@ -29,9 +29,17 @@ public class ContratoEmprestimoDAO  implements Serializable{
 		
 		if(contratoEmprestimos == null){
 			contratoEmprestimos = new ArrayList<ContratoEmprestimoDTO>();
+			//TODO SETAR OS ATRIBUTOS EM CADA um
 			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO();
+			ContratoEmprestimoDTO c2 = new ContratoEmprestimoDTO();
+			ContratoEmprestimoDTO c3 = new ContratoEmprestimoDTO();
+			ContratoEmprestimoDTO c4 = new ContratoEmprestimoDTO();
+			
 			//TODO preencher os dados do empregado
 			contratoEmprestimos.add(c1);
+			contratoEmprestimos.add(c2);
+			contratoEmprestimos.add(c3);
+			contratoEmprestimos.add(c4);
 			
 		}
 		return contratoEmprestimos;
