@@ -9,5 +9,8 @@
         <dependent-module archiveName="emprestimo-infnet-core.jar" deploy-path="/lib" handle="module:/resource/emprestimo-infnet-core/emprestimo-infnet-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="emprestimo-infnet-bean.jar" deploy-path="/lib" handle="module:/resource/emprestimo-infnet-bean/emprestimo-infnet-bean">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

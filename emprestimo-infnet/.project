@@ -3,6 +3,7 @@
 	<name>emprestimo-infnet</name>
 	<comment></comment>
 	<projects>
+		<project>emprestimo-infnet-bean</project>
 		<project>emprestimo-infnet-core</project>
 		<project>emprestimo-infnet-ejb</project>
 	</projects>
