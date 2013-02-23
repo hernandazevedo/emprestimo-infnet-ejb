@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class ContratoEmprestimoDTO implements Serializable{
 	
+	//Informacao necessaria ao refinanciamento.
+	private ContratoEmprestimoDTO contratoEmprestimoAnterior;
 	
 	private int id_contrato;
 	private EmpregadoDTO empregado;
@@ -78,6 +80,15 @@ public class ContratoEmprestimoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	public ContratoEmprestimoDTO getContratoEmprestimoAnterior() {
+		return contratoEmprestimoAnterior;
+	}
+	
+	public void setContratoEmprestimoAnterior(
+			ContratoEmprestimoDTO contratoEmprestimoAnterior) {
+		this.contratoEmprestimoAnterior = contratoEmprestimoAnterior;
+	}
+	
 	//TODO colocar os campos de emprestimo
 	
 }
