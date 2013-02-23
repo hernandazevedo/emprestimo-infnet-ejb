@@ -76,9 +76,10 @@ public class EmprestimoBean implements Emprestimo {
 	private boolean isEmprestivoAtivoMesmaInstituicao(ContratoEmprestimoDTO emprestimoDTO) {
 		//utilizar a lista
 		boolean flag = false;
+		
 		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
 			//TODO validar se o emprestimo esta ativo para a mesma instituicao
-			if(1 == 1){
+			if(c.getAtivo()){
 				flag = true;
 			}
 		}
@@ -100,7 +101,6 @@ public class EmprestimoBean implements Emprestimo {
 				}
 			}
 		}
-		
 		return flag;
 	}
 	
@@ -116,8 +116,7 @@ public class EmprestimoBean implements Emprestimo {
 	 * (non-Javadoc)
 	 * @see servicos.Emprestimo#solicitarRefinanciamentoEmprestimo(dominio.dto.ContratoEmprestimoDTO)
 	 */ 
-	public MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(
-			ContratoEmprestimoDTO emprestimoDTO) {
+	public MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(ContratoEmprestimoDTO emprestimoDTO) {
 		MensagemRetornoBeanWS retorno = null;
 		
 		//RN1
