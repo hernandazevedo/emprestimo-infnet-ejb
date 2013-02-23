@@ -8,8 +8,11 @@ public class ConvenioDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private EmpresaConvenenteDTO empresaConvenenteDTO;
 	private InstituicaoFinanceiraDTO instituicaoFinanceiraDTO;
+	
+	
 	public EmpresaConvenenteDTO getEmpresaConvenenteDTO() {
 		return empresaConvenenteDTO;
 	}
