@@ -1,6 +1,7 @@
 package dominio.dto;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 public class EmpregadoDTO implements Serializable{
@@ -10,9 +11,164 @@ public class EmpregadoDTO implements Serializable{
 	private boolean ativo;
 	private List<ContratoEmprestimoDTO> contratos;
 	
+	private String cpf;
+	private String rg;
+	private String filhacao;
+	private Date data_nascimento;
+	private String endereco;
+	private String telefone;
+	private EmpresaConvenenteDTO empresa;
+	private String matricula;
+	private double salario;
 	
 	
 	
+	
+	
+	public String getMatricula() {
+		return matricula;
+	}
+
+
+
+
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+
+
+
+
+	public double getSalario() {
+		return salario;
+	}
+
+
+
+
+
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+
+
+
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+
+
+
+	public String getRg() {
+		return rg;
+	}
+
+
+
+
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+
+
+
+
+	public String getFilhacao() {
+		return filhacao;
+	}
+
+
+
+
+
+	public void setFilhacao(String filhacao) {
+		this.filhacao = filhacao;
+	}
+
+
+
+
+
+	public Date getData_nascimento() {
+		return data_nascimento;
+	}
+
+
+
+
+
+	public void setData_nascimento(Date data_nascimento) {
+		this.data_nascimento = data_nascimento;
+	}
+
+
+
+
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+
+
+
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+
+
+
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+
+
+
+	public EmpresaConvenenteDTO getEmpresa() {
+		return empresa;
+	}
+
+
+
+
+
+	public void setEmpresa(EmpresaConvenenteDTO empresa) {
+		this.empresa = empresa;
+	}
+
+
+
+
+
 	public EmpregadoDTO() {
 		// TODO Auto-generated constructor stub
 	}

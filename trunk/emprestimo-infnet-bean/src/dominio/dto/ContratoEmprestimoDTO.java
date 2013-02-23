@@ -6,20 +6,58 @@ public class ContratoEmprestimoDTO implements Serializable{
 	
 	
 	private int id_contrato;
-	private Boolean ativo;
+	private EmpregadoDTO empregado;
+	private InstituicaoFinanceiraDTO instituicao;
+	private PlanoEmprestimoDTO plano;
+	private String nome_corretor;
 	
 	
 	
+	public ContratoEmprestimoDTO(int id_contrato, EmpregadoDTO empregado,
+			InstituicaoFinanceiraDTO instituicao, PlanoEmprestimoDTO plano) {
+		super();
+		this.id_contrato = id_contrato;
+		this.empregado = empregado;
+		this.instituicao = instituicao;
+		this.plano = plano;
+	}
+
+	public PlanoEmprestimoDTO getPlano() {
+		return plano;
+	}
+
+	public void setPlano(PlanoEmprestimoDTO plano) {
+		this.plano = plano;
+	}
+
+	public ContratoEmprestimoDTO(int id_contrato, EmpregadoDTO empregado,
+			InstituicaoFinanceiraDTO instituicao) {
+		super();
+		this.id_contrato = id_contrato;
+		this.empregado = empregado;
+		this.instituicao = instituicao;
+	}
+
+	public EmpregadoDTO getEmpregado() {
+		return empregado;
+	}
+
+	public void setEmpregado(EmpregadoDTO empregado) {
+		this.empregado = empregado;
+	}
+
+	public InstituicaoFinanceiraDTO getInstituicao() {
+		return instituicao;
+	}
+
+	public void setInstituicao(InstituicaoFinanceiraDTO instituicao) {
+		this.instituicao = instituicao;
+	}
+
 	public ContratoEmprestimoDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ContratoEmprestimoDTO(int id_contrato, Boolean ativo) {
-		super();
-		this.id_contrato = id_contrato;
-		this.ativo = ativo;
-	}
-
 	public int getId_contrato() {
 		return id_contrato;
 	}
@@ -27,17 +65,15 @@ public class ContratoEmprestimoDTO implements Serializable{
 	public void setId_contrato(int id_contrato) {
 		this.id_contrato = id_contrato;
 	}
-	
-	public Boolean getAtivo() {
-		return ativo;
+
+
+	public String getNome_corretor() {
+		return nome_corretor;
 	}
 
-
-
-	public void setAtivo(Boolean ativo) {
-		this.ativo = ativo;
+	public void setNome_corretor(String nome_corretor) {
+		this.nome_corretor = nome_corretor;
 	}
-
 
 
 	private static final long serialVersionUID = 1L;

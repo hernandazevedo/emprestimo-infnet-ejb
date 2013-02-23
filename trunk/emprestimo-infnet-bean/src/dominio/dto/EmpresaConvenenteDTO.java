@@ -5,15 +5,10 @@ import java.util.List;
 
 public class EmpresaConvenenteDTO  implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
-	//Um para muitos
 	private List<FuncionarioDTO> funcionarios;
-	//Muitos para muitos... ver InstituicaoFinanceira
 	private List<ConvenioDTO> convenios;
+
 	public List<FuncionarioDTO> getFuncionarios() {
 		return funcionarios;
 	}
