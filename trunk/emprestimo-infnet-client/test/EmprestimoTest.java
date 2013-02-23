@@ -105,6 +105,89 @@ public class EmprestimoTest {
 		 Assert.assertEquals("Cliente não pode solicitar um novo empréstimo, possui emprestimo ativo na instituição", msgExeption);
 	}
 	
+	@Test
+	public void solicitarRefinanciamentoEmprestimoOK(){
+		MensagemRetornoBeanWS retorno = null;
+		 try {
+			 		
+			 
+			initialContext = new InitialContext();
+			 
+			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
+			
+			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			
+			
+		    retorno  = remote.solicitarRefinanciamentoEmprestimo(contrato);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(retorno != null);
+		 Assert.assertEquals(EnumMensagemRetorno.OK.getCodigo(), retorno.getCodigo());
+	}
+	
+	@Test
+	public void solicitarRefinanciamentoEmprestimoFalhaRegraNegocioUM(){
+		
+		String msgExeption = null;
+		 try {
+			 
+			initialContext = new InitialContext();
+			 
+			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
+			
+			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			
+		    remote.solicitarEmprestimo(contrato);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e){
+			msgExeption = e.getMessage();
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(msgExeption != null);
+		 Assert.assertEquals("Cliente não pode solicitar um novo refinanciamento, não possui emprestimos ativos", msgExeption);
+	}
+	
+	@Test
+	public void solicitarRefinanciamentoEmprestimoFalhaRegraNegocioDOIS(){
+		
+		String msgExeption = null;
+		 try {
+			 		
+			initialContext = new InitialContext();
+			 
+			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
+			
+			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			
+		    remote.solicitarEmprestimo(contrato);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e){
+			msgExeption = e.getMessage();
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(msgExeption != null);
+		 Assert.assertEquals("O emprestimo não está habilitado para refinanciamento", msgExeption);
+	}
+	
 //	private static InitialContext configuraContext() throws NamingException {
 //		Properties props = new Properties();
 //		props.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
