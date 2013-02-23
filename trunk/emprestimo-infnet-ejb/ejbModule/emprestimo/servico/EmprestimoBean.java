@@ -95,10 +95,8 @@ public class EmprestimoBean implements Emprestimo {
 	private boolean isClienteCadastroAtivo(ContratoEmprestimoDTO emprestimoDTO) {
 		boolean flag = false;
 		for(EmpregadoDTO em:empregadoDAO.getEmpregados()){
-			for (int i = 0; i < em.getContratos().size(); i++) {
-				if( em.getContratos().get(i).getAtivo()) {
+			if (em.getAtivo()){
 				flag = true;
-				}
 			}
 		}
 		return flag;
