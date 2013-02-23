@@ -9,7 +9,6 @@ import dominio.dao.ContratoEmprestimoDAO;
 import dominio.dao.EmpregadoDAO;
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.EmpregadoDTO;
-import emprestimo.exeptions.BusinessException;
 @Stateful
 public class EmprestimoBean implements Emprestimo {
 
@@ -29,17 +28,17 @@ public class EmprestimoBean implements Emprestimo {
 	 * (non-Javadoc)
 	 * @see servicos.Emprestimo#solicitarEmprestimo(dominio.dto.ContratoEmprestimoDTO)
 	 */
-	public MensagemRetornoBeanWS solicitarEmprestimo(ContratoEmprestimoDTO emprestimoDTO) {
+	public MensagemRetornoBeanWS solicitarEmprestimo(ContratoEmprestimoDTO emprestimoDTO)  throws Exception{
 		MensagemRetornoBeanWS retorno = null;
 		
 		//RN1 
 		if(!isClienteCadastroAtivo(emprestimoDTO)){
-			throw new BusinessException("Cliente não possui cadastro ativo no sistema");
+			throw new Exception("Cliente não possui cadastro ativo no sistema");
 		}
 		
 		//RN2 
 		if(isEmprestivoAtivoMesmaInstituicao(emprestimoDTO)){
-			throw new BusinessException("Cliente não pode solicitar um novo empréstimo, possui emprestimo ativo na instituição");
+			throw new Exception("Cliente não pode solicitar um novo empréstimo, possui emprestimo ativo na instituição");
 		}
 		
 
@@ -111,17 +110,17 @@ public class EmprestimoBean implements Emprestimo {
 	 * (non-Javadoc)
 	 * @see servicos.Emprestimo#solicitarRefinanciamentoEmprestimo(dominio.dto.ContratoEmprestimoDTO)
 	 */ 
-	public MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(ContratoEmprestimoDTO emprestimoDTO) {
+	public MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(ContratoEmprestimoDTO emprestimoDTO)  throws Exception {
 		MensagemRetornoBeanWS retorno = null;
 		
 		//RN1
 		if(!isEmprestivoAtivoMesmaInstituicao(emprestimoDTO)){
-			throw new BusinessException("Cliente não pode solicitar um novo refinanciamento, não possui emprestimo ativo na instituição");
+			throw new Exception("Cliente não pode solicitar um novo refinanciamento, não possui emprestimo ativo na instituição");
 		}
 		
 		//RN2
 		if(!isRefinanciamentoEmprestimoHabilitado(emprestimoDTO)){
-			throw new BusinessException("O emprestimo não está habilitado para refinanciamento");
+			throw new Exception("O emprestimo não está habilitado para refinanciamento");
 		}
 		
 		//TODO realizar a solicitação de emprestimo/refinanciamento
