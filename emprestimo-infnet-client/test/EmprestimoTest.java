@@ -23,17 +23,20 @@ public class EmprestimoTest {
 	}
 
 	@Test
-	public void emprestimoOK(){
+	public void solicitarEmprestimoOK(){
 		MensagemRetornoBeanWS retorno = null;
 		 try {
 			 		
-//			initialContext = configuraContext();
 			 
 			initialContext = new InitialContext();
 			 
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
-		    retorno  = remote.solicitarEmprestimo(new ContratoEmprestimoDTO());
+			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			
+			
+		    retorno  = remote.solicitarEmprestimo(contrato);
 			
 			
 		} catch (NamingException e) {
@@ -44,6 +47,62 @@ public class EmprestimoTest {
 		 
 		 Assert.assertTrue(retorno != null);
 		 Assert.assertEquals(EnumMensagemRetorno.OK.getCodigo(), retorno.getCodigo());
+	}
+	
+	@Test
+	public void solicitarEmprestimoFalhaRegraNegocioUM(){
+		
+		String msgExeption = null;
+		 try {
+			 
+			initialContext = new InitialContext();
+			 
+			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
+			
+			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			
+		    remote.solicitarEmprestimo(contrato);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e){
+			msgExeption = e.getMessage();
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(msgExeption != null);
+		 Assert.assertEquals("Cliente não possui cadastro ativo no sistema", msgExeption);
+	}
+	
+	@Test
+	public void solicitarEmprestimoFalhaRegraNegocioDOIS(){
+		
+		String msgExeption = null;
+		 try {
+			 		
+			initialContext = new InitialContext();
+			 
+			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
+			
+			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			
+		    remote.solicitarEmprestimo(contrato);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		catch(Exception e){
+			msgExeption = e.getMessage();
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(msgExeption != null);
+		 Assert.assertEquals("Cliente não pode solicitar um novo empréstimo, possui emprestimo ativo na instituição", msgExeption);
 	}
 	
 //	private static InitialContext configuraContext() throws NamingException {
