@@ -42,13 +42,10 @@ public class EmprestimoBean implements Emprestimo {
 			throw new BusinessException("Cliente não pode solicitar um novo empréstimo, possui emprestimo ativo na instituição");
 		}
 		
-		//TODO realizar a solicitação de emprestimo
+
 		try{
-			//Trecho de emprestimo aqui....
-			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
-			//SETAR OS DADOS
 			
-			salvarEmprestimo(contrato);
+			salvarEmprestimo(emprestimoDTO);
 			
 			
 		}catch (Exception e) {
