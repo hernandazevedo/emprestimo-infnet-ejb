@@ -25,15 +25,17 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	 * Mock da lista inicial de emprestimos contratados 
 	 * @return
 	 */
+	
+	
 	private List<ContratoEmprestimoDTO> mockContratoEmprestimos() {
 		
 		if(contratoEmprestimos == null){
 			contratoEmprestimos = new ArrayList<ContratoEmprestimoDTO>();
 			//TODO SETAR OS ATRIBUTOS EM CADA um
-			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO(1,true);
-			ContratoEmprestimoDTO c2 = new ContratoEmprestimoDTO(2,false);
-			ContratoEmprestimoDTO c3 = new ContratoEmprestimoDTO(3,false);
-			ContratoEmprestimoDTO c4 = new ContratoEmprestimoDTO(4,false);
+			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO();
+			ContratoEmprestimoDTO c2 = new ContratoEmprestimoDTO();
+			ContratoEmprestimoDTO c3 = new ContratoEmprestimoDTO();
+			ContratoEmprestimoDTO c4 = new ContratoEmprestimoDTO();
 			
 			//TODO preencher os dados do empregado
 			contratoEmprestimos.add(c1);
