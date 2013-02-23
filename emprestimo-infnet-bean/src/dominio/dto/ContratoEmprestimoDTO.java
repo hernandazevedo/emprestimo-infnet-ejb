@@ -12,7 +12,8 @@ public class ContratoEmprestimoDTO implements Serializable{
 	private InstituicaoFinanceiraDTO instituicao;
 	private PlanoEmprestimoDTO plano;
 	private String nome_corretor;
-	private boolean status;
+	private boolean statusAtivo;	
+	private Boolean refinanciamentoHabilitado;
 	
 	
 	
@@ -80,12 +81,12 @@ public class ContratoEmprestimoDTO implements Serializable{
 
 	
 
-	public boolean isStatus() {
-		return status;
+	public boolean isStatusAtivo() {
+		return statusAtivo;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setStatusAtivo(boolean statusAtivo) {
+		this.statusAtivo = statusAtivo;
 	}
 	
 
@@ -93,4 +94,21 @@ public class ContratoEmprestimoDTO implements Serializable{
 
 	//TODO colocar os campos de emprestimo
 	
+	
+	public ContratoEmprestimoDTO getContratoEmprestimoAnterior() {
+		return contratoEmprestimoAnterior;
+	}
+	
+	public void setContratoEmprestimoAnterior(
+			ContratoEmprestimoDTO contratoEmprestimoAnterior) {
+		this.contratoEmprestimoAnterior = contratoEmprestimoAnterior;
+	}
+	
+	public Boolean getRefinanciamentoHabilitado() {
+		return refinanciamentoHabilitado;
+	}
+	
+	public void setRefinanciamentoHabilitado(Boolean refinanciamentoHabilitado) {
+		this.refinanciamentoHabilitado = refinanciamentoHabilitado;
+	}
 }

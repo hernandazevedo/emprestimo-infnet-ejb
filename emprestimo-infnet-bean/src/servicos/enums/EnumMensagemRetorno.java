@@ -20,16 +20,9 @@ public enum EnumMensagemRetorno {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
-	}
-
+	
 	public String getMensagem() {
 		return mensagem;
-	}
-
-	public void setMensagem(String mensagem) {
-		this.mensagem = mensagem;
 	}
 
 	
