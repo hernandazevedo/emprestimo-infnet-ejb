@@ -10,6 +10,16 @@ public class ContratoEmprestimoDTO implements Serializable{
 	
 	
 	
+	public ContratoEmprestimoDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ContratoEmprestimoDTO(int id_contrato, Boolean ativo) {
+		super();
+		this.id_contrato = id_contrato;
+		this.ativo = ativo;
+	}
+
 	public int getId_contrato() {
 		return id_contrato;
 	}
