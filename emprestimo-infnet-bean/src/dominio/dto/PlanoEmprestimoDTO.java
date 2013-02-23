@@ -6,6 +6,7 @@ public class PlanoEmprestimoDTO  implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
+	private int id_plano;
 	private String nome_plano;
 	private int numero_min_parcelas;
 	private int numero_max_parcelas;
@@ -15,6 +16,17 @@ public class PlanoEmprestimoDTO  implements Serializable{
 	public PlanoEmprestimoDTO() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	public int getId_plano() {
+		return id_plano;
+	}
+
+
+	public void setId_plano(int id_plano) {
+		this.id_plano = id_plano;
+	}
+
 
 	public String getNome_plano() {
 		return nome_plano;

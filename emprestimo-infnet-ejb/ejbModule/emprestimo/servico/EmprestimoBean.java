@@ -69,14 +69,16 @@ public class EmprestimoBean implements Emprestimo {
 	 * @param emprestimoDTO 
 	 * @return
 	 */
-	private boolean isEmprestivoAtivoMesmaInstituicao(ContratoEmprestimoDTO emprestimoDTO) {
 		//utilizar a lista
+	private boolean isEmprestivoAtivoMesmaInstituicao(ContratoEmprestimoDTO emprestimoDTO) {
 		boolean flag = false;
 		
 		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
-			//TODO validar se o emprestimo esta ativo para a mesma instituicao
-			if(c.getAtivo()){
-				flag = true;
+			if (c.isStatus()) {
+				if (emprestimoDTO.getEmpregado().getCpf().equals(c.getEmpregado().getCpf())){
+					flag =(c.getPlano().getId_plano() == emprestimoDTO.getPlano().getId_plano() && c.getInstituicao().getId_instituicao() == emprestimoDTO.getInstituicao().getId_instituicao());
+				}
+				
 			}
 		}
 		return flag;

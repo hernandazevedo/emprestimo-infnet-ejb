@@ -7,6 +7,7 @@ public class InstituicaoFinanceiraDTO implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
+	private int id_instituicao;
 	
 	private List<PlanoEmprestimoDTO> planosEmprestimos;
 	//Muitos para muitos... ver EmpresaConvenente
@@ -23,7 +24,12 @@ public class InstituicaoFinanceiraDTO implements Serializable{
 	public void setConvenios(List<ConvenioDTO> convenios) {
 		this.convenios = convenios;
 	}
-	
+	public int getId_instituicao() {
+		return id_instituicao;
+	}
+	public void setId_instituicao(int id_instituicao) {
+		this.id_instituicao = id_instituicao;
+	}
 	
 	
 	

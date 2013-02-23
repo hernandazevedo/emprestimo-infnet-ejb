@@ -12,6 +12,7 @@ public class ContratoEmprestimoDTO implements Serializable{
 	private InstituicaoFinanceiraDTO instituicao;
 	private PlanoEmprestimoDTO plano;
 	private String nome_corretor;
+	private boolean status;
 	
 	
 	
@@ -77,18 +78,19 @@ public class ContratoEmprestimoDTO implements Serializable{
 		this.nome_corretor = nome_corretor;
 	}
 
+	
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 
 	private static final long serialVersionUID = 1L;
 
-	public ContratoEmprestimoDTO getContratoEmprestimoAnterior() {
-		return contratoEmprestimoAnterior;
-	}
-	
-	public void setContratoEmprestimoAnterior(
-			ContratoEmprestimoDTO contratoEmprestimoAnterior) {
-		this.contratoEmprestimoAnterior = contratoEmprestimoAnterior;
-	}
-	
 	//TODO colocar os campos de emprestimo
 	
 }
