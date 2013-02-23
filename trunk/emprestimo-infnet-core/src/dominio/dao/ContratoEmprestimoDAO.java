@@ -66,4 +66,17 @@ public class ContratoEmprestimoDAO  implements Serializable{
 		getContratoEmprestimos().add(contrato);
 	}
 	
+	public void salvarContratoEmprestimoRefinanciamento(ContratoEmprestimoDTO contrato){
+		
+		//Setando o status do emprestimo anterior para inativo pois ele foi refinanciado.
+		//TODO verificar outras informacoes que devem ser setadas para caso de refinanciamento 
+		for(ContratoEmprestimoDTO c:getContratoEmprestimos()){
+			if(c.getId_contrato() == contrato.getContratoEmprestimoAnterior().getId_contrato()){
+				c.setStatusAtivo(false);
+			}
+		}
+		
+		getContratoEmprestimos().add(contrato);
+	}
+	
 }

@@ -61,6 +61,11 @@ public class EmprestimoBean implements Emprestimo {
 		contratosDAO.salvarContratoEmprestimo(contrato);
 		
 	}
+	
+	private void salvarContratoEmprestimoRefinanciamento(ContratoEmprestimoDTO contrato) {
+		contratosDAO.salvarContratoEmprestimoRefinanciamento(contrato);
+		
+	}
 
 	
 
@@ -74,7 +79,7 @@ public class EmprestimoBean implements Emprestimo {
 		boolean flag = false;
 		
 		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
-			if (c.isStatus()) {
+			if (c.isStatusAtivo()) {
 				if (emprestimoDTO.getEmpregado().getCpf().equals(c.getEmpregado().getCpf())){
 					flag =(c.getPlano().getId_plano() == emprestimoDTO.getPlano().getId_plano() && c.getInstituicao().getId_instituicao() == emprestimoDTO.getInstituicao().getId_instituicao());
 				}
@@ -116,8 +121,8 @@ public class EmprestimoBean implements Emprestimo {
 		MensagemRetornoBeanWS retorno = null;
 		
 		//RN1
-		if(!isEmprestivoAtivoMesmaInstituicao(emprestimoDTO)){
-			throw new Exception("Cliente não pode solicitar um novo refinanciamento, não possui emprestimo ativo na instituição");
+		if(!isEmprestivoAtivoCliente(emprestimoDTO)){
+			throw new Exception("Cliente não pode solicitar um novo refinanciamento, não possui emprestimos ativos");
 		}
 		
 		//RN2
@@ -125,14 +130,12 @@ public class EmprestimoBean implements Emprestimo {
 			throw new Exception("O emprestimo não está habilitado para refinanciamento");
 		}
 		
-		//TODO realizar a solicitação de emprestimo/refinanciamento
+		
 		try{
-			//Trecho de emprestimo aqui....
+		
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
-			//SETAR OS DADOS
-			//SETAR O EMPRESTIMO ANTERIOR(Contrato anterior), que caracteriza um refinanciamento.
-			
-			salvarEmprestimo(contrato);
+		
+			salvarContratoEmprestimoRefinanciamento(contrato);
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -143,12 +146,45 @@ public class EmprestimoBean implements Emprestimo {
 		return retorno;
 	}
 
+	/**
+	 * Verifica se o cliente possui algum emprestimo ativo
+	 * @param emprestimoDTO
+	 * @return
+	 */
+	private boolean isEmprestivoAtivoCliente(ContratoEmprestimoDTO emprestimoDTO) {
+		//utilizar a lista
+		boolean flag = false;
+		
+		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
 
-	private boolean isRefinanciamentoEmprestimoHabilitado(
-			ContratoEmprestimoDTO emprestimoDTO) {
-		// TODO Auto-generated method stub
-		return false;
+			if(c.isStatusAtivo() &&
+					c.getEmpregado().getCpf().equals(emprestimoDTO.getEmpregado().getCpf())){
+				
+				flag = true;
+				break;
+		
+			}
+		}
+		return flag;
 	}
 
+	/**
+	 * Verifica se o contrato de emprestimo a ser refinanciado esta habilitado para refinanciamento
+	 * @param emprestimoDTO
+	 * @return
+	 */
+	private boolean isRefinanciamentoEmprestimoHabilitado(ContratoEmprestimoDTO emprestimoDTO) {
+		
+		boolean flag = false;
+		
+		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
+			if(emprestimoDTO.getId_contrato() == c.getId_contrato() && c.getRefinanciamentoHabilitado()){
+				flag = true;
+				break;
+			}
+
+		}
+		return flag;
+	}
 }
 
