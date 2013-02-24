@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import servicos.enums.EnumStatusAnalise;
+
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.EmpregadoDTO;
 
@@ -34,6 +36,7 @@ public class ContratoEmprestimoDAO  implements Serializable{
 			contratoEmprestimos = new ArrayList<ContratoEmprestimoDTO>();
 			//TODO SETAR OS ATRIBUTOS EM CADA um
 			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO();
+			c1.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
 			ContratoEmprestimoDTO c2 = new ContratoEmprestimoDTO();
 			ContratoEmprestimoDTO c3 = new ContratoEmprestimoDTO();
 			ContratoEmprestimoDTO c4 = new ContratoEmprestimoDTO();
@@ -100,6 +103,18 @@ public class ContratoEmprestimoDAO  implements Serializable{
 		}
 		
 		getContratoEmprestimos().add(contrato);
+	}
+
+	public List<ContratoEmprestimoDTO> getContratoEmprestimos(
+			EnumStatusAnalise enumStatusAnalise) {
+		List<ContratoEmprestimoDTO> contratosRetorno = new ArrayList<ContratoEmprestimoDTO>();
+		for(ContratoEmprestimoDTO contrato : getContratoEmprestimos()){
+			if(contrato.getStatusAnalise() == enumStatusAnalise.getStatusAnalise()){
+				contratosRetorno.add(contrato);
+			}
+			
+		}
+		return contratosRetorno;
 	}
 	
 }
