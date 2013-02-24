@@ -1,6 +1,7 @@
 package dominio.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import servicos.enums.EnumStatusAnalise;
 
@@ -18,6 +19,8 @@ public class ContratoEmprestimoDTO implements Serializable{
 	private boolean refinanciamentoHabilitado;
 	private Integer statusAnalise;
 	private String descricaoStatusAnalise;
+	private Date dataStatusAnalise;
+	private FuncionarioDTO funcionarioAnalise;
 	
 	
 	public ContratoEmprestimoDTO(int id_contrato, EmpregadoDTO empregado,
@@ -141,5 +144,19 @@ public class ContratoEmprestimoDTO implements Serializable{
 		}
 		return descricaoStatusAnalise;
 	}
+	public Date getDataStatusAnalise() {
+		return dataStatusAnalise;
+	}
 	
+	public void setDataStatusAnalise(Date dataStatusAnalise) {
+		this.dataStatusAnalise = dataStatusAnalise;
+	}	
+	
+	public FuncionarioDTO getFuncionarioAnalise() {
+		return funcionarioAnalise;
+	}
+	
+	public void setFuncionarioAnalise(FuncionarioDTO funcionarioAnalise) {
+		this.funcionarioAnalise = funcionarioAnalise;
+	}
 }
