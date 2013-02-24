@@ -13,7 +13,7 @@ public class ContratoEmprestimoDTO implements Serializable{
 	private PlanoEmprestimoDTO plano;
 	private String nome_corretor;
 	private boolean statusAtivo;	
-	private Boolean refinanciamentoHabilitado;
+	private boolean refinanciamentoHabilitado;
 	
 	
 	
@@ -104,11 +104,11 @@ public class ContratoEmprestimoDTO implements Serializable{
 		this.contratoEmprestimoAnterior = contratoEmprestimoAnterior;
 	}
 	
-	public Boolean getRefinanciamentoHabilitado() {
+	public boolean getRefinanciamentoHabilitado() {
 		return refinanciamentoHabilitado;
 	}
 	
-	public void setRefinanciamentoHabilitado(Boolean refinanciamentoHabilitado) {
+	public void setRefinanciamentoHabilitado(boolean refinanciamentoHabilitado) {
 		this.refinanciamentoHabilitado = refinanciamentoHabilitado;
 	}
 }

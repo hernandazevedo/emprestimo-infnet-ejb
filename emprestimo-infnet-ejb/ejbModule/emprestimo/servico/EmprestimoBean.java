@@ -158,6 +158,9 @@ public class EmprestimoBean implements Emprestimo {
 		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
 
 			if(c.isStatusAtivo() &&
+					c.getEmpregado() != null &&
+					c.getEmpregado().getCpf() != null &&
+					emprestimoDTO.getEmpregado() != null &&
 					c.getEmpregado().getCpf().equals(emprestimoDTO.getEmpregado().getCpf())){
 				
 				flag = true;
@@ -178,7 +181,9 @@ public class EmprestimoBean implements Emprestimo {
 		boolean flag = false;
 		
 		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
-			if(emprestimoDTO.getId_contrato() == c.getId_contrato() && c.getRefinanciamentoHabilitado()){
+			if(emprestimoDTO.getId_contrato() > 0 &&
+					emprestimoDTO.getId_contrato() == c.getId_contrato()
+					&& c.getRefinanciamentoHabilitado()){
 				flag = true;
 				break;
 			}
