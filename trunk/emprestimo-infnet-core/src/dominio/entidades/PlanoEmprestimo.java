@@ -1,4 +1,4 @@
-package emprestimo.model;
+package dominio.entidades;
 
 
 //Ainda modelelando a Classe! NAO CONCLUIDO!

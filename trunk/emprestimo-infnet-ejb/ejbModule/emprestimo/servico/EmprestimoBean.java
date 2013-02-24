@@ -2,9 +2,9 @@ package emprestimo.servico;
 
 import javax.ejb.Stateful;
 
-import servicos.Emprestimo;
-import servicos.MensagemRetornoBeanWS;
+import servicos.bean.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
+import servicos.interfaces.Emprestimo;
 import dominio.dao.ContratoEmprestimoDAO;
 import dominio.dao.EmpregadoDAO;
 import dominio.dto.ContratoEmprestimoDTO;
@@ -98,7 +98,10 @@ public class EmprestimoBean implements Emprestimo {
 	private boolean isClienteCadastroAtivo(ContratoEmprestimoDTO emprestimoDTO) {
 		boolean flag = false;
 		for(EmpregadoDTO em:empregadoDAO.getEmpregados()){
-			if (em.getAtivo()){
+			if (em.getAtivo() &&
+				emprestimoDTO.getEmpregado() != null &&
+				emprestimoDTO.getEmpregado().getCpf() != null &&
+				emprestimoDTO.getEmpregado().getCpf().equals(em.getCpf())){
 				flag = true;
 			}
 		}

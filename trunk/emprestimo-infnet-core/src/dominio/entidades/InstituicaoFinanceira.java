@@ -1,4 +1,4 @@
-package emprestimo.model;
+package dominio.entidades;
 
 import java.util.List;
 
