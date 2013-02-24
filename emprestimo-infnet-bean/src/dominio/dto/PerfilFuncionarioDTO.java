@@ -2,47 +2,35 @@ package dominio.dto;
 
 import java.io.Serializable;
 
+import servicos.enums.EnumPerfilFuncionario;
+
 public class PerfilFuncionarioDTO implements Serializable {
 
-	private int id_perfil;
-	private String nome_perfil;
-	
-	
-	
-	
-	
-	public int getId_perfil() {
-		return id_perfil;
-	}
-
-
-
-
-
-	public void setId_perfil(int id_perfil) {
-		this.id_perfil = id_perfil;
-	}
-
-
-
-
-
-	public String getNome_perfil() {
-		return nome_perfil;
-	}
-
-
-
-
-
-	public void setNome_perfil(String nome_perfil) {
-		this.nome_perfil = nome_perfil;
-	}
-
-
-
-
-
+	private int idPerfil;
+	private String nomePerfil;
 	private static final long serialVersionUID = 1L;
+	
+	public PerfilFuncionarioDTO() {
+	}
+	
+	public PerfilFuncionarioDTO(EnumPerfilFuncionario enumPerfilFuncionario){
+		this.idPerfil = enumPerfilFuncionario.getIdPerfil();
+		this.nomePerfil = enumPerfilFuncionario.getNomePerfil();
+	}
+	
+	public int getIdPerfil() {
+		return idPerfil;
+	}
+	public void setIdPerfil(int idPerfil) {
+		this.idPerfil = idPerfil;
+	}
+	public String getNomePerfil() {
+		return nomePerfil;
+	}
+	public void setNomePerfil(String nomePerfil) {
+		this.nomePerfil = nomePerfil;
+	}
+	
+	
 
 }
