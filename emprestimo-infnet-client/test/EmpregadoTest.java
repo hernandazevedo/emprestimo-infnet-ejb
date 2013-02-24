@@ -35,6 +35,7 @@ public class EmpregadoTest {
 			
 			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
 			EmpregadoDTO empregadoRequerente = new EmpregadoDTO();
+			empregadoRequerente.setCpf("05823562705");
 			
 		    retorno  = remote.consultarHistoricoRelacionamento(empregadoRequerente);
 			

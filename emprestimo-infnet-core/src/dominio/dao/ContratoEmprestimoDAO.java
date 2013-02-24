@@ -38,6 +38,10 @@ public class ContratoEmprestimoDAO  implements Serializable{
 			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO();
 			c1.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
 			ContratoEmprestimoDTO c2 = new ContratoEmprestimoDTO();
+			EmpregadoDTO e = new EmpregadoDTO();
+			e.setAtivo(true);
+			e.setCpf("05823562705");
+			c2.setEmpregado(e);
 			ContratoEmprestimoDTO c3 = new ContratoEmprestimoDTO();
 			ContratoEmprestimoDTO c4 = new ContratoEmprestimoDTO();
 			
@@ -120,7 +124,10 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	public void atualizarContratoEmprestimo(ContratoEmprestimoDTO emprestimoDTO) {
 		
 		for(ContratoEmprestimoDTO c:getContratoEmprestimos()){
-			if(c.getId_contrato() == emprestimoDTO.getId_contrato()){
+			if(
+				emprestimoDTO.getId_contrato() > 0 &&
+				c.getId_contrato() == emprestimoDTO.getId_contrato()){
+				
 				getContratoEmprestimos().remove(c);
 				getContratoEmprestimos().add(emprestimoDTO);
 				break;
