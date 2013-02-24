@@ -8,4 +8,4 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ EmpregadoTest.class, EmprestimoTest.class} )
-public final class AllTestsSuite {} // or ModuleFooSuite, and that in AllTests
+public final class AllTestsSuite {}
