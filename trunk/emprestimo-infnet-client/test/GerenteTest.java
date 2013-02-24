@@ -7,7 +7,10 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
+import servicos.bean.MensagemRetornoBeanWS;
+import servicos.enums.EnumMensagemRetorno;
 import servicos.enums.EnumPerfilFuncionario;
+import servicos.enums.EnumStatusAnalise;
 import servicos.interfaces.Gerente;
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.FuncionarioDTO;
@@ -73,6 +76,92 @@ public class GerenteTest {
 		 
 		 Assert.assertTrue(msgExeption != null);
 		 Assert.assertEquals("Funcionario não é gerente. Apenas um funcionário gerente pode realizar essa atividade.", msgExeption);
+	}
+	
+	@Test
+	public void analisarPropostaPreAprovadoOK(){
+		MensagemRetornoBeanWS retorno = null;
+		 try {
+			 		
+			 
+			initialContext = new InitialContext();
+			 
+			Gerente remote = (Gerente) initialContext.lookup(url);
+			
+			FuncionarioDTO funcionarioRequerente = new FuncionarioDTO();
+			funcionarioRequerente.setPerfil(new PerfilFuncionarioDTO(EnumPerfilFuncionario.GERENTE));
+			ContratoEmprestimoDTO emprestimoDTO = new ContratoEmprestimoDTO();
+			emprestimoDTO.setStatusAnalise(EnumStatusAnalise.ANALISADA);
+			
+		    retorno  = remote.analisarProposta(emprestimoDTO,funcionarioRequerente);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(retorno != null);
+		 Assert.assertEquals(EnumMensagemRetorno.OK.getCodigo(), retorno.getCodigo());
+	}
+	
+	@Test
+	public void analisarPropostaRejeitadaOK(){
+		MensagemRetornoBeanWS retorno = null;
+		 try {
+			 		
+			 
+			initialContext = new InitialContext();
+			 
+			Gerente remote = (Gerente) initialContext.lookup(url);
+			
+			FuncionarioDTO funcionarioRequerente = new FuncionarioDTO();
+			funcionarioRequerente.setPerfil(new PerfilFuncionarioDTO(EnumPerfilFuncionario.GERENTE));
+			ContratoEmprestimoDTO emprestimoDTO = new ContratoEmprestimoDTO();
+			emprestimoDTO.setStatusAnalise(EnumStatusAnalise.REJEITADA);
+			
+		    retorno  = remote.analisarProposta(emprestimoDTO,funcionarioRequerente);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(retorno != null);
+		 Assert.assertEquals(EnumMensagemRetorno.OK.getCodigo(), retorno.getCodigo());
+	}
+	
+	@Test
+	public void analisarPropostaStatusInvalido(){
+		MensagemRetornoBeanWS retorno = null;
+		 try {
+			 		
+			 
+			initialContext = new InitialContext();
+			 
+			Gerente remote = (Gerente) initialContext.lookup(url);
+			
+			FuncionarioDTO funcionarioRequerente = new FuncionarioDTO();
+			funcionarioRequerente.setPerfil(new PerfilFuncionarioDTO(EnumPerfilFuncionario.GERENTE));
+			ContratoEmprestimoDTO emprestimoDTO = new ContratoEmprestimoDTO();
+			
+			//STATUS invalido para analise, neste caso deve retornar "NOK"
+			emprestimoDTO.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
+			
+		    retorno  = remote.analisarProposta(emprestimoDTO,funcionarioRequerente);
+			
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		 
+		 Assert.assertTrue(retorno != null);
+		 Assert.assertEquals(EnumMensagemRetorno.NOK.getCodigo(), retorno.getCodigo());
 	}
 	
 }

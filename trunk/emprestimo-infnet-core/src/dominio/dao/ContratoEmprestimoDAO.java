@@ -116,5 +116,17 @@ public class ContratoEmprestimoDAO  implements Serializable{
 		}
 		return contratosRetorno;
 	}
+
+	public void atualizarContratoEmprestimo(ContratoEmprestimoDTO emprestimoDTO) {
+		
+		for(ContratoEmprestimoDTO c:getContratoEmprestimos()){
+			if(c.getId_contrato() == emprestimoDTO.getId_contrato()){
+				getContratoEmprestimos().remove(c);
+				getContratoEmprestimos().add(emprestimoDTO);
+				break;
+			}
+		}
+		
+	}
 	
 }

@@ -7,5 +7,5 @@ import org.junit.runners.Suite;
  *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ EmpregadoTest.class, EmprestimoTest.class} )
+@Suite.SuiteClasses({ EmpregadoTest.class, EmprestimoTest.class,GerenteTest.class} )
 public final class AllTestsSuite {}
