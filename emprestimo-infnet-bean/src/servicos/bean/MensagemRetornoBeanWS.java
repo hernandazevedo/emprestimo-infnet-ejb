@@ -1,4 +1,4 @@
-package servicos;
+package servicos.bean;
 
 import java.io.Serializable;
 

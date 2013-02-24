@@ -5,9 +5,9 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import servicos.Emprestimo;
-import servicos.MensagemRetornoBeanWS;
+import servicos.bean.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
+import servicos.interfaces.Emprestimo;
 import dominio.dto.ContratoEmprestimoDTO;
 
 
@@ -145,7 +145,7 @@ public class EmprestimoTest {
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
 			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
 			
-		    remote.solicitarEmprestimo(contrato);
+		    remote.solicitarRefinanciamentoEmprestimo(contrato);
 			
 			
 		} catch (NamingException e) {
@@ -173,7 +173,7 @@ public class EmprestimoTest {
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
 			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
 			
-		    remote.solicitarEmprestimo(contrato);
+		    remote.solicitarRefinanciamentoEmprestimo(contrato);
 			
 			
 		} catch (NamingException e) {

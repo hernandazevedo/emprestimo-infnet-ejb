@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dominio.dto.ContratoEmprestimoDTO;
+import dominio.dto.EmpregadoDTO;
 
 public class ContratoEmprestimoDAO  implements Serializable{
 	
@@ -56,9 +57,32 @@ public class ContratoEmprestimoDAO  implements Serializable{
 		return instance;
 	}
 	
-	
+	/**
+	 * Retorna os emprestimos
+	 * @return
+	 */
 	public List<ContratoEmprestimoDTO> getContratoEmprestimos() {
 		return contratoEmprestimos;
+	}
+	
+	/**
+	 * Retorna os emprestimos realizados pelo empregado passado.
+	 * @param empregadoRequerente
+	 * @return
+	 */
+	public List<ContratoEmprestimoDTO> getContratoEmprestimos(EmpregadoDTO empregadoRequerente) {
+		List<ContratoEmprestimoDTO> emprestimosCliente = new ArrayList<ContratoEmprestimoDTO>();
+		
+		for(ContratoEmprestimoDTO contrato : getContratoEmprestimos()){
+			if( contrato.getEmpregado() != null &&
+				(contrato.getEmpregado().getCpf() != null &&  empregadoRequerente.getCpf() != null) &&	
+				contrato.getEmpregado().getCpf().equals(empregadoRequerente.getCpf())){
+				emprestimosCliente.add(contrato);
+				
+			}
+		}
+		
+		return emprestimosCliente;
 	}
 	
 	
@@ -69,7 +93,6 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	public void salvarContratoEmprestimoRefinanciamento(ContratoEmprestimoDTO contrato){
 		
 		//Setando o status do emprestimo anterior para inativo pois ele foi refinanciado.
-		//TODO verificar outras informacoes que devem ser setadas para caso de refinanciamento 
 		for(ContratoEmprestimoDTO c:getContratoEmprestimos()){
 			if(c.getId_contrato() == contrato.getContratoEmprestimoAnterior().getId_contrato()){
 				c.setStatusAtivo(false);

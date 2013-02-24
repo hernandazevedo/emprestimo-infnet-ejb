@@ -2,6 +2,8 @@ package dominio.dto;
 
 import java.io.Serializable;
 
+import servicos.enums.EnumStatusAnalise;
+
 public class ContratoEmprestimoDTO implements Serializable{
 	
 	//Informacao necessaria ao refinanciamento.
@@ -14,7 +16,8 @@ public class ContratoEmprestimoDTO implements Serializable{
 	private String nome_corretor;
 	private boolean statusAtivo;	
 	private boolean refinanciamentoHabilitado;
-	
+	private Integer statusAnalise;
+	private String descricaoStatusAnalise;
 	
 	
 	public ContratoEmprestimoDTO(int id_contrato, EmpregadoDTO empregado,
@@ -111,4 +114,32 @@ public class ContratoEmprestimoDTO implements Serializable{
 	public void setRefinanciamentoHabilitado(boolean refinanciamentoHabilitado) {
 		this.refinanciamentoHabilitado = refinanciamentoHabilitado;
 	}
+	
+	public Integer getStatusAnalise() {
+		return statusAnalise;
+	}
+	
+	public void setStatusAnalise(Integer statusAnalise) {
+		this.statusAnalise = statusAnalise;
+	}
+	
+	public void setStatusAnalise(EnumStatusAnalise enumStatusAnalise) {
+		this.statusAnalise = enumStatusAnalise.getStatusAnalise();
+		this.descricaoStatusAnalise = enumStatusAnalise.getDescricaoAnalise();
+	}
+	
+	public String getDescricaoStatusAnalise() {
+		if(descricaoStatusAnalise == null){
+			if(statusAnalise != null){
+				for(EnumStatusAnalise e : EnumStatusAnalise.values()){
+					if(e.getStatusAnalise().intValue() == statusAnalise){
+						descricaoStatusAnalise = e.getDescricaoAnalise();
+						break;
+					}
+				}
+			}
+		}
+		return descricaoStatusAnalise;
+	}
+	
 }
