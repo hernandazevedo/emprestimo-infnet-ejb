@@ -16,7 +16,7 @@ public class EmprestimoTest {
 	
 	private InitialContext initialContext;
 	
-	private String url = "emprestimo-infnet/emprestimo-infnet-ejb/EmprestimoBean!servicos.Emprestimo";
+	private String url = "emprestimo-infnet/emprestimo-infnet-ejb/EmprestimoBean!servicos.interfaces.Emprestimo";
 	
 	public EmprestimoTest() {
 		// TODO Auto-generated constructor stub

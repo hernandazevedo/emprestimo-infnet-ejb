@@ -17,7 +17,7 @@ public class EmpregadoTest {
 	
 	private InitialContext initialContext;
 	
-	private String url = "emprestimo-infnet/emprestimo-infnet-ejb/EmpregadoBean!servicos.Empregado";
+	private String url = "emprestimo-infnet/emprestimo-infnet-ejb/EmpregadoBean!servicos.interfaces.Empregado";
 	
 	public EmpregadoTest() {
 		// TODO Auto-generated constructor stub
