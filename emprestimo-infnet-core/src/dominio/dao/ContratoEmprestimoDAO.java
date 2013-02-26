@@ -130,10 +130,9 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	c1.setNome_corretor("Nome do Corretor");
 	c1.setPlano(plan2);
 	c1.setRefinanciamentoHabilitado(true);
-	c1.setStatusAnalise(EnumStatusAnalise.APROVADA);
-	c1.setStatusAnalise(1);
+	c1.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
+//	c1.setStatusAnalise(1);
 	c1.setStatusAtivo(true);
-	
 	//Contrato 2
 	ContratoEmprestimoDTO c2 = new ContratoEmprestimoDTO();
 	c2.setDataStatusAnalise(new java.util.Date(2000, 2, 11));
@@ -172,14 +171,19 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	
 	List<ContratoEmprestimoDTO> contratos = new ArrayList<ContratoEmprestimoDTO>();
 	contratos.add(c1);
-	contratos.add(c2);			
+	contratos.add(c2);	
+	
+	
+	
+//	mockContratoEmprestimos(contratos);
 	return contratos;
 	}
 	
-	private List<ContratoEmprestimoDTO> mockContratoEmprestimos() {
+	private void mockContratoEmprestimos(List<ContratoEmprestimoDTO> contratoEmprestimos) {
 		
 		if(contratoEmprestimos == null){
 			contratoEmprestimos = new ArrayList<ContratoEmprestimoDTO>();
+		}
 			//TODO SETAR OS ATRIBUTOS EM CADA um
 			ContratoEmprestimoDTO c1 = new ContratoEmprestimoDTO();
 			c1.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
@@ -197,8 +201,7 @@ public class ContratoEmprestimoDAO  implements Serializable{
 			contratoEmprestimos.add(c3);
 			contratoEmprestimos.add(c4);
 			
-		}
-		return contratoEmprestimos;
+		
 	}
 	
 	

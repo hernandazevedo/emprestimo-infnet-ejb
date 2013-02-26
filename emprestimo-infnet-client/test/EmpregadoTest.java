@@ -35,7 +35,7 @@ public class EmpregadoTest {
 			
 			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
 			EmpregadoDTO empregadoRequerente = new EmpregadoDTO();
-			empregadoRequerente.setCpf("05823562705");
+			empregadoRequerente.setCpf("14210417742");
 			
 		    retorno  = remote.consultarHistoricoRelacionamento(empregadoRequerente);
 			
@@ -73,7 +73,7 @@ public class EmpregadoTest {
 			}
 		 
 		 Assert.assertTrue(msgExeption != null);
-		 Assert.assertEquals("Cliente n„o possui cadastro ativo no sistema", msgExeption);
+		 Assert.assertEquals("Cliente n√£o possui cadastro ativo no sistema", msgExeption);
 	}
 	
 	

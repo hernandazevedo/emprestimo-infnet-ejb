@@ -30,8 +30,8 @@ public class EmpregadoDAO  implements Serializable{
 		if(empregados == null){
 			empregados = new ArrayList<EmpregadoDTO>();
 			//TODO SETAR OS ATRIBUTOS EM CADA
-			EmpregadoDTO e1 = new EmpregadoDTO(1,"Hernand",true);
-			e1.setCpf("05823562705");
+			EmpregadoDTO e1 = new EmpregadoDTO(1,"William",true);
+			e1.setCpf("14210417742");
 			EmpregadoDTO e2 = new EmpregadoDTO(2,"teste2",false);
 			EmpregadoDTO e3 = new EmpregadoDTO(3,"teste3",false);
 			EmpregadoDTO e4 = new EmpregadoDTO(4,"teste4",false);
