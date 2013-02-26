@@ -18,6 +18,21 @@ public class PlanoEmprestimoDTO  implements Serializable{
 	}
 
 	
+	
+	public PlanoEmprestimoDTO(int id_plano, String nome_plano,
+			int numero_min_parcelas, int numero_max_parcelas,
+			double taxa_anual_juros, double comissao_correspondente_bancario) {
+		super();
+		this.id_plano = id_plano;
+		this.nome_plano = nome_plano;
+		this.numero_min_parcelas = numero_min_parcelas;
+		this.numero_max_parcelas = numero_max_parcelas;
+		this.taxa_anual_juros = taxa_anual_juros;
+		this.comissao_correspondente_bancario = comissao_correspondente_bancario;
+	}
+
+
+
 	public int getId_plano() {
 		return id_plano;
 	}

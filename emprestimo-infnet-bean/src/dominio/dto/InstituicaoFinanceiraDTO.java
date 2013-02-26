@@ -8,10 +8,36 @@ public class InstituicaoFinanceiraDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int id_instituicao;
-	
 	private List<PlanoEmprestimoDTO> planosEmprestimos;
+	
 	//Muitos para muitos... ver EmpresaConvenente
 	private List<ConvenioDTO> convenios;
+	
+	public InstituicaoFinanceiraDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public InstituicaoFinanceiraDTO(int id_instituicao,
+			List<PlanoEmprestimoDTO> planosEmprestimos,
+			List<ConvenioDTO> convenios) {
+		super();
+		this.id_instituicao = id_instituicao;
+		this.planosEmprestimos = planosEmprestimos;
+		this.convenios = convenios;
+	}
+
+	
+
+
+	public InstituicaoFinanceiraDTO(int id_instituicao) {
+		super();
+		this.id_instituicao = id_instituicao;
+	}
+
+
+
 	public List<PlanoEmprestimoDTO> getPlanosEmprestimos() {
 		return planosEmprestimos;
 	}
