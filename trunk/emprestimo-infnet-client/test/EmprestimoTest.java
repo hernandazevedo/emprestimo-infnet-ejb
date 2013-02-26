@@ -74,7 +74,7 @@ public class EmprestimoTest {
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
-		 Assert.assertEquals("Cliente n„o possui cadastro ativo no sistema", msgExeption);
+		 Assert.assertEquals("Cliente n√£o possui cadastro ativo no sistema", msgExeption);
 	}
 	
 	@Test
@@ -102,7 +102,7 @@ public class EmprestimoTest {
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
-		 Assert.assertEquals("Cliente n„o pode solicitar um novo emprÈstimo, possui emprestimo ativo na instituiÁ„o", msgExeption);
+		 Assert.assertEquals("Cliente n√£o pode solicitar um novo empr√©stimo, possui emprestimo ativo na institui√ß√£o", msgExeption);
 	}
 	
 	@Test
@@ -157,7 +157,7 @@ public class EmprestimoTest {
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
-		 Assert.assertEquals("Cliente n„o pode solicitar um novo refinanciamento, n„o possui emprestimos ativos", msgExeption);
+		 Assert.assertEquals("Cliente n√£o pode solicitar um novo refinanciamento, n√£o possui emprestimos ativos", msgExeption);
 	}
 	
 	@Test
@@ -185,7 +185,7 @@ public class EmprestimoTest {
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
-		 Assert.assertEquals("O emprestimo n„o est· habilitado para refinanciamento", msgExeption);
+		 Assert.assertEquals("O emprestimo n√£o est√° habilitado para refinanciamento", msgExeption);
 	}
 	
 //	private static InitialContext configuraContext() throws NamingException {

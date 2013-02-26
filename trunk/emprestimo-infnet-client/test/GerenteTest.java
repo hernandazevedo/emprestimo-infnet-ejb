@@ -75,7 +75,7 @@ public class GerenteTest {
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
-		 Assert.assertEquals("Funcionario n„o È gerente. Apenas um funcion·rio gerente pode realizar essa atividade.", msgExeption);
+		 Assert.assertEquals("Funcionario n√£o √© gerente. Apenas um funcion√°rio gerente pode realizar essa atividade.", msgExeption);
 	}
 	
 	@Test
