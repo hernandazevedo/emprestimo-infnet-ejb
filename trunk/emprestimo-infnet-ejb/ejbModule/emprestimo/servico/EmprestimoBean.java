@@ -2,6 +2,8 @@ package emprestimo.servico;
 
 import javax.ejb.Stateful;
 
+import org.jboss.logging.Logger;
+
 import servicos.bean.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
 import servicos.interfaces.Emprestimo;
@@ -12,6 +14,7 @@ import dominio.dto.EmpregadoDTO;
 @Stateful
 public class EmprestimoBean implements Emprestimo {
 
+	private Logger log = Logger.getLogger(EmprestimoBean.class);
 	//Singletons que mantem os dados mockados
 	private static ContratoEmprestimoDAO contratosDAO = ContratoEmprestimoDAO.getInstance();
 	private static EmpregadoDAO empregadoDAO = EmpregadoDAO.getInstance();
@@ -48,7 +51,7 @@ public class EmprestimoBean implements Emprestimo {
 			
 			
 		}catch (Exception e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 			retorno = new MensagemRetornoBeanWS(EnumMensagemRetorno.NOK);
 		}
 		
@@ -141,7 +144,7 @@ public class EmprestimoBean implements Emprestimo {
 			salvarContratoEmprestimoRefinanciamento(contrato);
 			
 		}catch (Exception e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 			retorno = new MensagemRetornoBeanWS(EnumMensagemRetorno.NOK);
 		}
 		

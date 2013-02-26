@@ -3,6 +3,7 @@ import javax.naming.NamingException;
 
 import junit.framework.Assert;
 
+import org.jboss.logging.Logger;
 import org.junit.Test;
 
 import servicos.bean.MensagemRetornoBeanWS;
@@ -13,7 +14,7 @@ import dominio.dto.ContratoEmprestimoDTO;
 
 public class EmprestimoTest {
 
-	
+	private Logger log = Logger.getLogger(EmprestimoTest.class);
 	private InitialContext initialContext;
 	
 	private String url = "emprestimo-infnet/emprestimo-infnet-ejb/EmprestimoBean!servicos.interfaces.Emprestimo";
@@ -40,9 +41,9 @@ public class EmprestimoTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(retorno != null);
@@ -66,11 +67,11 @@ public class EmprestimoTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		catch(Exception e){
 			msgExeption = e.getMessage();
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
@@ -94,11 +95,11 @@ public class EmprestimoTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		catch(Exception e){
 			msgExeption = e.getMessage();
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
@@ -123,9 +124,9 @@ public class EmprestimoTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(retorno != null);
@@ -149,11 +150,11 @@ public class EmprestimoTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		catch(Exception e){
 			msgExeption = e.getMessage();
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
@@ -177,11 +178,11 @@ public class EmprestimoTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		catch(Exception e){
 			msgExeption = e.getMessage();
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
