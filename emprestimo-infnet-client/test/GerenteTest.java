@@ -5,6 +5,7 @@ import javax.naming.NamingException;
 
 import junit.framework.Assert;
 
+import org.jboss.logging.Logger;
 import org.junit.Test;
 
 import servicos.bean.MensagemRetornoBeanWS;
@@ -19,7 +20,7 @@ import dominio.dto.PerfilFuncionarioDTO;
 
 public class GerenteTest {
 
-
+	private Logger log = Logger.getLogger(GerenteTest.class);
 	private InitialContext initialContext;
 	
 	private String url = "emprestimo-infnet/emprestimo-infnet-ejb/GerenteBean!servicos.interfaces.Gerente";
@@ -42,9 +43,9 @@ public class GerenteTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(retorno != null);
@@ -68,10 +69,10 @@ public class GerenteTest {
 		    remote.listarPropostasPendenteAnalise(funcionarioRequerente);
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
 			msgExeption = e.getMessage();
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(msgExeption != null);
@@ -97,9 +98,9 @@ public class GerenteTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(retorno != null);
@@ -125,9 +126,9 @@ public class GerenteTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(retorno != null);
@@ -155,9 +156,9 @@ public class GerenteTest {
 			
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(retorno != null);

@@ -5,6 +5,7 @@ import javax.naming.NamingException;
 
 import junit.framework.Assert;
 
+import org.jboss.logging.Logger;
 import org.junit.Test;
 
 import servicos.interfaces.Empregado;
@@ -14,7 +15,7 @@ import dominio.dto.EmpregadoDTO;
 
 public class EmpregadoTest {
 
-	
+	private Logger log = Logger.getLogger(EmpregadoTest.class);
 	private InitialContext initialContext;
 	
 	private String url = "emprestimo-infnet/emprestimo-infnet-ejb/EmpregadoBean!servicos.interfaces.Empregado";
@@ -40,9 +41,9 @@ public class EmpregadoTest {
 		    retorno  = remote.consultarHistoricoRelacionamento(empregadoRequerente);
 			
 		} catch (NamingException e) {
-			e.printStackTrace();
+			log.error("Erro :", e);
 		} catch(Exception e){
-			e.printStackTrace();
+			log.error("Erro :", e);
 		}
 		 
 		 Assert.assertTrue(retorno != null);
@@ -66,10 +67,10 @@ public class EmpregadoTest {
 			    remote.consultarHistoricoRelacionamento(empregadoRequerente);
 				
 			} catch (NamingException e) {
-				e.printStackTrace();
+				log.error("Erro :", e);
 			} catch(Exception e){
 				msgExeption = e.getMessage();
-				e.printStackTrace();
+				log.error("Erro :", e);
 			}
 		 
 		 Assert.assertTrue(msgExeption != null);
