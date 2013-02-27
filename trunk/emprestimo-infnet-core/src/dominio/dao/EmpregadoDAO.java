@@ -35,11 +35,14 @@ public class EmpregadoDAO  implements Serializable{
 			EmpregadoDTO e2 = new EmpregadoDTO(2,"teste2",false);
 			EmpregadoDTO e3 = new EmpregadoDTO(3,"teste3",false);
 			EmpregadoDTO e4 = new EmpregadoDTO(4,"teste4",false);
+			EmpregadoDTO e5 = new EmpregadoDTO(113, "Hernand solicitarEmprestimoOK", true);
+			e5.setCpf("64675653715");
 			//TODO preencher os dados do empregado
 			empregados.add(e1);
 			empregados.add(e2);
 			empregados.add(e3);
 			empregados.add(e4);
+			empregados.add(e5);
 			
 		}
 		return empregados;

@@ -187,8 +187,8 @@ public class EmprestimoBean implements Emprestimo {
 		boolean flag = false;
 		
 		for(ContratoEmprestimoDTO c :contratosDAO.getContratoEmprestimos()){
-			if(emprestimoDTO.getId_contrato() > 0 &&
-					emprestimoDTO.getId_contrato() == c.getId_contrato()
+			if(emprestimoDTO.getContratoEmprestimoAnterior().getId_contrato() > 0 &&
+					emprestimoDTO.getContratoEmprestimoAnterior().getId_contrato() == c.getId_contrato()
 					&& c.getRefinanciamentoHabilitado()){
 				flag = true;
 				break;
