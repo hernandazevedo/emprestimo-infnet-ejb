@@ -17,11 +17,11 @@ public class EmpregadoBean implements Empregado {
 	private static EmpregadoDAO empregadoDAO = EmpregadoDAO.getInstance();
 	
 	/*
-	Acompanhar an·lise de solicitaÁ„o feita via site	Como: Cliente com proposta de emprÈstimo realizada
-	Quero: Consultar o histÛrico de relacionamento com a ativa
-	HistÛria: Localizar propostas, emprÈstimos e refinanciamentos realizados 	
+	Acompanhar an√°lise de solicita√ß√£o feita via site	Como: Cliente com proposta de empr√©stimo realizada
+	Quero: Consultar o hist√≥rico de relacionamento com a ativa
+	Hist√≥ria: Localizar propostas, empr√©stimos e refinanciamentos realizados 	
 	RN1 - O cliente deve possuir um cadastrado na Ativa.
-	RN2 - Para um cliente, os estados possÌveis de uma proposta s„o: An·lise, Rejeitada, PrÈ-Aprovada, Aprovada e Reprovada
+	RN2 - Para um cliente, os estados poss√≠veis de uma proposta s√£o: An√°lise, Rejeitada, Pr√©-Aprovada, Aprovada e Reprovada
 
 	 * @see servicos.interfaces.Empregado#consultarHistoricoRelacionamento(dominio.dto.EmpregadoDTO)
 	 */
@@ -31,7 +31,7 @@ public class EmpregadoBean implements Empregado {
 			EmpregadoDTO empregadoRequerente) throws Exception {
 		//RN1 
 		if(!isClienteCadastroAtivo(empregadoRequerente)){
-			throw new Exception("Cliente n„o possui cadastro ativo no sistema");
+			throw new Exception("Cliente n√£o possui cadastro ativo no sistema");
 		}
 		
 		/**RN2 foi implementada usando um enum de statusAnalise @see servicos.enums.EnumStatusAnalise**/ 

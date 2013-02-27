@@ -21,12 +21,12 @@ public class EmprestimoBean implements Emprestimo {
 	
 	
 	/*
-	Solicitar EmprÈstimo via Site	Como: Cliente sem emprÈstimo ativo
-	Quero: Solicitar um EmprÈstimo.
-	HistÛria: 
-	1- Preencher dados de uma solicitaÁ„o de emprÈstimo e enviar	- 
+	Solicitar Empr√©stimo via Site	Como: Cliente sem empr√©stimo ativo
+	Quero: Solicitar um Empr√©stimo.
+	Hist√≥ria: 
+	1- Preencher dados de uma solicita√ß√£o de empr√©stimo e enviar	- 
 	RN1 - Cliente deve possuir um cadastrado na Ativa.
-	RN2 - N„o pode solicitar um novo emprÈstimo, se j· possuir um ativo numa mesma instituiÁ„o financeira.
+	RN2 - N√£o pode solicitar um novo empr√©stimo, se j√° possuir um ativo numa mesma institui√ß√£o financeira.
 
 	 * (non-Javadoc)
 	 * @see servicos.Emprestimo#solicitarEmprestimo(dominio.dto.ContratoEmprestimoDTO)
@@ -36,12 +36,12 @@ public class EmprestimoBean implements Emprestimo {
 		
 		//RN1 
 		if(!isClienteCadastroAtivo(emprestimoDTO)){
-			throw new Exception("Cliente n„o possui cadastro ativo no sistema");
+			throw new Exception("Cliente n√£o possui cadastro ativo no sistema");
 		}
 		
 		//RN2 
 		if(isEmprestivoAtivoMesmaInstituicao(emprestimoDTO)){
-			throw new Exception("Cliente n„o pode solicitar um novo emprÈstimo, possui emprestimo ativo na instituiÁ„o");
+			throw new Exception("Cliente n√£o pode solicitar um novo empr√©stimo, possui emprestimo ativo na institui√ß√£o");
 		}
 		
 
@@ -73,7 +73,7 @@ public class EmprestimoBean implements Emprestimo {
 	
 
 	/**
-	 * Valida se o cliente possui emprestimo ativo nesta instituiÁ„o
+	 * Valida se o cliente possui emprestimo ativo nesta institui√ß√£o
 	 * @param emprestimoDTO 
 	 * @return
 	 */
@@ -114,11 +114,11 @@ public class EmprestimoBean implements Emprestimo {
 	
 	/*
 	 * 
-	Solicitar Refinanciamento via Site	Como: Cliente com emprÈstimo ativo
+	Solicitar Refinanciamento via Site	Como: Cliente com empr√©stimo ativo
 	Quero: Solicitar um Refinaciamento.
-	HistÛria: Preencher dados de uma solicitaÁ„o de refinanciamento e enviar	
-	RN1 - Cliente deve possuir pelo menos um emprÈstimo ativo.
-	RN2 - O emprÈstimo a ser refinanciado deve estar habilitado a ser refinanciado.
+	Hist√≥ria: Preencher dados de uma solicita√ß√£o de refinanciamento e enviar	
+	RN1 - Cliente deve possuir pelo menos um empr√©stimo ativo.
+	RN2 - O empr√©stimo a ser refinanciado deve estar habilitado a ser refinanciado.
 	
 	 * (non-Javadoc)
 	 * @see servicos.Emprestimo#solicitarRefinanciamentoEmprestimo(dominio.dto.ContratoEmprestimoDTO)
@@ -128,12 +128,12 @@ public class EmprestimoBean implements Emprestimo {
 		
 		//RN1
 		if(!isEmprestivoAtivoCliente(emprestimoDTO)){
-			throw new Exception("Cliente n„o pode solicitar um novo refinanciamento, n„o possui emprestimos ativos");
+			throw new Exception("Cliente n√£o pode solicitar um novo refinanciamento, n√£o possui emprestimos ativos");
 		}
 		
 		//RN2
 		if(!isRefinanciamentoEmprestimoHabilitado(emprestimoDTO)){
-			throw new Exception("O emprestimo n„o est· habilitado para refinanciamento");
+			throw new Exception("O emprestimo n√£o est√° habilitado para refinanciamento");
 		}
 		
 		

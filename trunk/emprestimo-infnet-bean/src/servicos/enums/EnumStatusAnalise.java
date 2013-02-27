@@ -7,8 +7,8 @@ public enum EnumStatusAnalise {
 	 * Status e Descricao que devem ser mostradas para o cliente
 	 * na busca do historico de relacionamento com a ATIVA. 
 	 */
-	PENDENTE_ANALISE(0,"An·lise"),
-	ANALISADA(1,"PrÈ-Aprovada"),
+	PENDENTE_ANALISE(0,"An√°lise"),
+	ANALISADA(1,"Pr√©-Aprovada"),
 	
 	REJEITADA(2,"Rejeitada"),
 	APROVADA(3,"Aprovada"),

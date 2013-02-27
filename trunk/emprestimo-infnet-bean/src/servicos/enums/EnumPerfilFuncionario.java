@@ -11,7 +11,7 @@ public enum EnumPerfilFuncionario {
 	OPERADOR_CALLCENTER(1,"Operador de CallCenter"),
 	SUPERVISOR_CALLCENTER(2,"Supervisor de CallCenter"),
 	GERENTE(3,"Gerente"),
-	FUNCIONARIO_BALCAO(4,"Funcion·rio Balc„o");
+	FUNCIONARIO_BALCAO(4,"Funcion√°rio Balc√£o");
 	
 	
 	private Integer idPerfil;
