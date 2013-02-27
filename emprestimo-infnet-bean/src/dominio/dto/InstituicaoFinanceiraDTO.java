@@ -9,6 +9,7 @@ public class InstituicaoFinanceiraDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int id_instituicao;
 	private List<PlanoEmprestimoDTO> planosEmprestimos;
+	private String nome;
 	
 	//Muitos para muitos... ver EmpresaConvenente
 	private List<ConvenioDTO> convenios;
@@ -57,6 +58,11 @@ public class InstituicaoFinanceiraDTO implements Serializable{
 		this.id_instituicao = id_instituicao;
 	}
 	
-	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	
 }

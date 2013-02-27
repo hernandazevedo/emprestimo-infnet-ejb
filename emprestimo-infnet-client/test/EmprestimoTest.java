@@ -8,8 +8,12 @@ import org.junit.Test;
 
 import servicos.bean.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
+import servicos.enums.EnumStatusAnalise;
 import servicos.interfaces.Emprestimo;
 import dominio.dto.ContratoEmprestimoDTO;
+import dominio.dto.EmpregadoDTO;
+import dominio.dto.InstituicaoFinanceiraDTO;
+import dominio.dto.PlanoEmprestimoDTO;
 
 
 public class EmprestimoTest {
@@ -34,6 +38,20 @@ public class EmprestimoTest {
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
+			EmpregadoDTO e = new EmpregadoDTO(113, "Hernand solicitarEmprestimoOK", true);
+			e.setCpf("64675653715");
+			
+			contrato.setEmpregado(e);
+			InstituicaoFinanceiraDTO i = new InstituicaoFinanceiraDTO();
+			i.setId_instituicao(999);
+			i.setNome("Fininvest");
+			contrato.setInstituicao(i);
+			contrato.setStatusAtivo(true);
+			contrato.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
+			PlanoEmprestimoDTO plano = new PlanoEmprestimoDTO(223, "Fininvest Platinum", 12, 60,  0.50D, 0.23D);
+			contrato.setPlano(plano);
+			contrato.setId_contrato(113344);
+			contrato.setRefinanciamentoHabilitado(true);
 			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
 			
 			
@@ -61,8 +79,19 @@ public class EmprestimoTest {
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
-			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			EmpregadoDTO e = new EmpregadoDTO(8754, "Jose inativo", false);
+			e.setCpf("20098547813");
 			
+			InstituicaoFinanceiraDTO i = new InstituicaoFinanceiraDTO();
+			i.setId_instituicao(999);
+			i.setNome("Fininvest");
+			contrato.setInstituicao(i);
+			contrato.setStatusAtivo(true);
+			contrato.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
+			PlanoEmprestimoDTO plano = new PlanoEmprestimoDTO(223, "Fininvest Platinum", 12, 60,  0.50D, 0.23D);
+			contrato.setPlano(plano);
+			contrato.setEmpregado(e);
+			contrato.setId_contrato(113344);
 		    remote.solicitarEmprestimo(contrato);
 			
 			
@@ -89,7 +118,19 @@ public class EmprestimoTest {
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
-			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			EmpregadoDTO e = new EmpregadoDTO(113, "Hernand solicitarEmprestimoOK", true);
+			e.setCpf("64675653715");
+			
+			contrato.setEmpregado(e);
+			InstituicaoFinanceiraDTO i = new InstituicaoFinanceiraDTO();
+			i.setId_instituicao(999);
+			i.setNome("Fininvest");
+			contrato.setInstituicao(i);
+			contrato.setStatusAtivo(true);
+			contrato.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
+			PlanoEmprestimoDTO plano = new PlanoEmprestimoDTO(223, "Fininvest Platinum", 12, 60,  0.50D, 0.23D);
+			contrato.setPlano(plano);
+			contrato.setId_contrato(113344);
 			
 		    remote.solicitarEmprestimo(contrato);
 			
@@ -117,7 +158,22 @@ public class EmprestimoTest {
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
-			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			EmpregadoDTO e = new EmpregadoDTO(113, "Hernand solicitarEmprestimoOK", true);
+			e.setCpf("64675653715");
+			
+			contrato.setEmpregado(e);
+			InstituicaoFinanceiraDTO i = new InstituicaoFinanceiraDTO();
+			i.setId_instituicao(999);
+			i.setNome("Fininvest");
+			contrato.setInstituicao(i);
+			contrato.setStatusAtivo(true);
+			contrato.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
+			PlanoEmprestimoDTO plano = new PlanoEmprestimoDTO(224, "Fininvest BASIC", 12, 60,  0.50D, 0.23D);
+			contrato.setPlano(plano);
+			contrato.setId_contrato(113355);
+			//IMPORTANTE O CONTRATO ANTERIOR
+			contrato.setContratoEmprestimoAnterior(new ContratoEmprestimoDTO(113344, e, i));
+			contrato.setRefinanciamentoHabilitado(false);
 			
 			
 		    retorno  = remote.solicitarRefinanciamentoEmprestimo(contrato);
@@ -172,7 +228,22 @@ public class EmprestimoTest {
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
 			
 			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
-			//TODO setar os dados de modo que os mocks retornem o resultado esperado.
+			EmpregadoDTO e = new EmpregadoDTO(113, "Hernand solicitarEmprestimoOK", true);
+			e.setCpf("64675653715");
+			
+			contrato.setEmpregado(e);
+			InstituicaoFinanceiraDTO i = new InstituicaoFinanceiraDTO();
+			i.setId_instituicao(999);
+			i.setNome("Fininvest");
+			contrato.setInstituicao(i);
+			contrato.setStatusAtivo(true);
+			contrato.setStatusAnalise(EnumStatusAnalise.PENDENTE_ANALISE);
+			PlanoEmprestimoDTO plano = new PlanoEmprestimoDTO(224, "Fininvest BASIC", 12, 60,  0.50D, 0.23D);
+			contrato.setPlano(plano);
+			contrato.setId_contrato(113366);
+			//IMPORTANTE O CONTRATO ANTERIOR
+			contrato.setContratoEmprestimoAnterior(new ContratoEmprestimoDTO(113355, e, i));
+			contrato.setRefinanciamentoHabilitado(false);
 			
 		    remote.solicitarRefinanciamentoEmprestimo(contrato);
 			
