@@ -74,7 +74,7 @@ public class ContratoEmprestimoDAO  implements Serializable{
 			
 		c1.setFuncionarioAnalise(f1);
 		c1.setId_contrato(123);
-		//Criando Instituiçação para contrato
+		//Criando InstituiÃ§aÃ§Ã£o para contrato
 		InstituicaoFinanceiraDTO i1 = new InstituicaoFinanceiraDTO();
 			ConvenioDTO conv1 = new ConvenioDTO();
 			ConvenioDTO conv2 = new ConvenioDTO();
