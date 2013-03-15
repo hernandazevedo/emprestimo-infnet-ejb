@@ -14,6 +14,7 @@ import servicos.enums.EnumPerfilFuncionario;
 import servicos.enums.EnumStatusAnalise;
 import servicos.interfaces.Gerente;
 import dominio.dto.ContratoEmprestimoDTO;
+import dominio.dto.EmpregadoDTO;
 import dominio.dto.FuncionarioDTO;
 import dominio.dto.PerfilFuncionarioDTO;
 
@@ -121,6 +122,11 @@ public class GerenteTest {
 			funcionarioRequerente.setPerfil(new PerfilFuncionarioDTO(EnumPerfilFuncionario.GERENTE));
 			ContratoEmprestimoDTO emprestimoDTO = new ContratoEmprestimoDTO();
 			emprestimoDTO.setStatusAnalise(EnumStatusAnalise.REJEITADA);
+			EmpregadoDTO empregado = new EmpregadoDTO();
+			empregado.setNome("Hernand");
+			empregado.setEmail("hernand.azevedo@gmail.com");
+			emprestimoDTO.setEmpregado(empregado);
+			emprestimoDTO.setId_contrato(1122457);
 			
 		    retorno  = remote.analisarProposta(emprestimoDTO,funcionarioRequerente);
 			

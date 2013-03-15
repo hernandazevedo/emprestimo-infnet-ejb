@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.util.List;
 
 public class EmpregadoDTO implements Serializable{
+
+	
+	private static final long serialVersionUID = 1L;
 	
 	private int id_empregado;
 	private String nome;
@@ -20,7 +23,7 @@ public class EmpregadoDTO implements Serializable{
 	private EmpresaConvenenteDTO empresa;
 	private String matricula;
 	private double salario;
-	
+	private String email;
 	
 	
 	
@@ -247,6 +250,11 @@ public class EmpregadoDTO implements Serializable{
 
 
 
-	private static final long serialVersionUID = 1L;
-
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
