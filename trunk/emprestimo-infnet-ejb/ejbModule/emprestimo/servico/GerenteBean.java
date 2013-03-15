@@ -3,6 +3,7 @@ package emprestimo.servico;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
 import servicos.bean.MensagemRetornoBeanWS;
@@ -10,16 +11,20 @@ import servicos.enums.EnumMensagemRetorno;
 import servicos.enums.EnumPerfilFuncionario;
 import servicos.enums.EnumStatusAnalise;
 import servicos.interfaces.Gerente;
+import servicos.interfaces.Mensageiro;
 import dominio.dao.CallCenterDAO;
 import dominio.dao.ContratoEmprestimoDAO;
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.FuncionarioDTO;
+import emprestimo.servico.email.MensagemHtmlEmailDTO;
 @Stateful
 public class GerenteBean implements Gerente {
 
 	//Singletons que mantem os dados mockados
 	private static ContratoEmprestimoDAO contratosDAO = ContratoEmprestimoDAO.getInstance();
 	private static CallCenterDAO callCenterDAO = CallCenterDAO.getInstance();
+	@EJB
+	Mensageiro mensageiro;
 	
 	@Override
 	public List<ContratoEmprestimoDTO> listarPropostasPendenteAnalise(
@@ -92,6 +97,22 @@ public class GerenteBean implements Gerente {
 		atualizarContratoEmprestimo(emprestimoDTO);
 		//RN3
 		enviarPropostaCallCenter(emprestimoDTO);
+		
+		enviarEmailCliente(emprestimoDTO);
+		
+	}
+
+
+	private void enviarEmailCliente(ContratoEmprestimoDTO emprestimoDTO) {
+		MensagemHtmlEmailDTO email = new MensagemHtmlEmailDTO();
+		email.setAssunto("Reprovação de proposta de emprestimo");
+		email.setEmail(emprestimoDTO.getEmpregado().getEmail());
+		email.setNome(emprestimoDTO.getEmpregado().getNome());
+		email.setMensagem("Sua proposta de emprestimo nº "
+								+
+								emprestimoDTO.getId_contrato()
+								+" foi reprovada.");
+		mensageiro.enviarMensagemObjetoParaFila(email);
 		
 	}
 
