@@ -13,6 +13,7 @@ import dominio.dto.EmpregadoDTO;
 import dominio.dto.EmpresaConvenenteDTO;
 import dominio.dto.FuncionarioDTO;
 import dominio.dto.InstituicaoFinanceiraDTO;
+import dominio.dto.ParcelaEmprestimoDTO;
 import dominio.dto.PerfilFuncionarioDTO;
 import dominio.dto.PlanoEmprestimoDTO;
 
@@ -173,6 +174,60 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	contratos.add(c1);
 	contratos.add(c2);	
 	
+	
+	List<ParcelaEmprestimoDTO> parcelas = new ArrayList<ParcelaEmprestimoDTO>();
+	ParcelaEmprestimoDTO parcela1 = new ParcelaEmprestimoDTO();
+	parcela1.setId_parcela(2);
+	parcela1.setStatus(true);
+	parcela1.setValor(50.0);
+	parcela1.setVencimento(new Date(2012, 4, 22));
+	
+	ParcelaEmprestimoDTO parcela2 = new ParcelaEmprestimoDTO();
+	parcela2.setId_parcela(2);
+	parcela2.setStatus(true);
+	parcela2.setValor(50.0);
+	parcela2.setVencimento(new Date(2012, 5, 22));
+	
+	ParcelaEmprestimoDTO parcela3 = new ParcelaEmprestimoDTO();
+	parcela3.setId_parcela(2);
+	parcela3.setStatus(true);
+	parcela3.setValor(50.0);
+	parcela3.setVencimento(new Date(2012, 6, 22));
+	
+	ParcelaEmprestimoDTO parcela4 = new ParcelaEmprestimoDTO();
+	parcela4.setId_parcela(2);
+	parcela4.setStatus(true);
+	parcela4.setValor(50.0);
+	parcela4.setVencimento(new Date(2012, 7, 22));
+	
+	ParcelaEmprestimoDTO parcela5 = new ParcelaEmprestimoDTO();
+	parcela5.setId_parcela(2);
+	parcela5.setStatus(true);
+	parcela5.setValor(50.0);
+	parcela5.setVencimento(new Date(2012, 8, 22));
+	
+	ParcelaEmprestimoDTO parcela6 = new ParcelaEmprestimoDTO();
+	parcela6.setId_parcela(2);
+	parcela6.setStatus(true);
+	parcela6.setValor(50.0);
+	parcela6.setVencimento(new Date(2012, 9, 22));
+	
+	ParcelaEmprestimoDTO parcela7 = new ParcelaEmprestimoDTO();
+	parcela7.setId_parcela(2);
+	parcela7.setStatus(true);
+	parcela7.setValor(50.0);
+	parcela7.setVencimento(new Date(2012, 10, 22));
+	
+	parcelas.add(parcela1);
+	parcelas.add(parcela2);
+	parcelas.add(parcela3);
+	parcelas.add(parcela4);
+	parcelas.add(parcela5);
+	parcelas.add(parcela7);
+	
+	c1.setParcelas(parcelas);
+	
+	c1.setValorEmprestimo(350.0);
 	
 	
 //	mockContratoEmprestimos(contratos);
