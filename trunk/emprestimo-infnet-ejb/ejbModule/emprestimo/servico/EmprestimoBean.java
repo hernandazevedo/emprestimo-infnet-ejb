@@ -1,5 +1,8 @@
 package emprestimo.servico;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateful;
 
 import org.jboss.logging.Logger;
@@ -11,6 +14,7 @@ import dominio.dao.ContratoEmprestimoDAO;
 import dominio.dao.EmpregadoDAO;
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.EmpregadoDTO;
+import dominio.dto.ParcelaEmprestimoDTO;
 @Stateful
 public class EmprestimoBean implements Emprestimo {
 
@@ -196,6 +200,48 @@ public class EmprestimoBean implements Emprestimo {
 
 		}
 		return flag;
+	}
+	
+	/*Listar todos os emprestimos de  
+	 * 
+	 * "operadores" == Empregado ?
+	 * 
+	 * de callcenter
+	 *  
+	 *  */
+	
+	
+	
+	//Apenas empréstimos com no mínimo 30% pagos devem ser exibidos.
+	private Boolean verificaValorEmprestimoValido(Double valorEmprestimo, List<ParcelaEmprestimoDTO> parcelas) {
+		List<ParcelaEmprestimoDTO> parcelasValidas = new ArrayList<ParcelaEmprestimoDTO>();
+		boolean result = false;
+		Double valorPago = 0.0;
+		for (ParcelaEmprestimoDTO p : parcelas) {
+			if (p.getStatus()) {
+				valorPago = valorPago + p.getValor();
+				parcelasValidas.add(p);
+			}
+		}
+		if (valorPago >= valorEmprestimo * 0.3) {
+			result = true;
+		}
+		return result;
+	}
+	
+	public List<ContratoEmprestimoDTO> listaContratoEmprestimo(EmpregadoDTO empregado) {
+		List<ContratoEmprestimoDTO> contratos = contratosDAO.getContratoEmprestimos(empregado);
+		
+		List<ContratoEmprestimoDTO> contratosValidos = new ArrayList<ContratoEmprestimoDTO>();
+		for (ContratoEmprestimoDTO ctremp : contratos) {
+			if (ctremp.getRefinanciamentoHabilitado()) {
+				if (verificaValorEmprestimoValido(ctremp.getValorEmprestimo(), ctremp.getParcelas())) {
+					contratos.add(ctremp);
+				}
+				
+			}
+		}
+		return contratosValidos;
 	}
 }
 
