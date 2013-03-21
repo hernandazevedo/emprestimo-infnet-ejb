@@ -238,10 +238,11 @@ public class EmprestimoBean implements Emprestimo {
 				if (verificaValorEmprestimoValido(ctremp.getValorEmprestimo(), ctremp.getParcelas())) {
 					contratos.add(ctremp);
 				}
-				
 			}
 		}
 		return contratosValidos;
 	}
+	
+	
 }
 

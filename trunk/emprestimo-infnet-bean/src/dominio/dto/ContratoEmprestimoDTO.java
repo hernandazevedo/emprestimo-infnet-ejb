@@ -23,6 +23,7 @@ public class ContratoEmprestimoDTO implements Serializable{
 	private Date dataStatusAnalise;
 	private FuncionarioDTO funcionarioAnalise;
 	private Double valorEmprestimo;
+	private boolean carteiraOperador;
 	
 	
 	/*Lista de parcelas*/
@@ -181,6 +182,16 @@ public class ContratoEmprestimoDTO implements Serializable{
 	public void setValorEmprestimo(Double valorEmprestimo) {
 		this.valorEmprestimo = valorEmprestimo;
 	}
+
+	public boolean getCarteiraOperador() {
+		return carteiraOperador;
+	}
+
+	public void setCarteiraOperador(Boolean carteiraOperador) {
+		this.carteiraOperador = carteiraOperador;
+	}
+	
+	
 	
 	
 	
