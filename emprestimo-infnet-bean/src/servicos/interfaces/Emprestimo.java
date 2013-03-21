@@ -1,9 +1,12 @@
 package servicos.interfaces;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 
 import servicos.bean.MensagemRetornoBeanWS;
 import dominio.dto.ContratoEmprestimoDTO;
+import dominio.dto.EmpregadoDTO;
 
 @Remote
 public interface Emprestimo {
@@ -20,4 +23,9 @@ public interface Emprestimo {
 	 * @return
 	 */
 	MensagemRetornoBeanWS solicitarRefinanciamentoEmprestimo(ContratoEmprestimoDTO emprestimoDTO) throws Exception;
+	
+	
+	
+	
+	public List<ContratoEmprestimoDTO> listaContratoEmprestimo(EmpregadoDTO empregado) throws Exception;
 }
