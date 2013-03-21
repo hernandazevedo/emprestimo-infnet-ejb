@@ -10,12 +10,12 @@ public class ConfiguracoesEmail implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Integer smtpPort = 465;
 	private Boolean debug = true;
-	private String smtpHost = "smtp.google.com";
+	private String smtpHost = "smtp.gmail.com";
 	private String to;
 	private String nameTo;
 	private String charSet = "UTF-8";
 	private Boolean tls = false;
-	private Boolean ssl = false;
+	private Boolean ssl = true;
 	private String authLogin = "hernand.azevedo@gmail.com";
 	private String authPassword = "20092305150";
 	private String style = "font-family: Arial,Helvetica,sans-serif; font-size: 12px;";
