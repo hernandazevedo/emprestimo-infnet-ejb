@@ -1,6 +1,5 @@
 package emprestimo.servico;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateful;
@@ -14,7 +13,7 @@ import dominio.dao.ContratoEmprestimoDAO;
 import dominio.dao.EmpregadoDAO;
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.EmpregadoDTO;
-import dominio.dto.ParcelaEmprestimoDTO;
+import dominio.dto.FuncionarioDTO;
 @Stateful
 public class EmprestimoBean implements Emprestimo {
 
@@ -211,38 +210,76 @@ public class EmprestimoBean implements Emprestimo {
 	 *  */
 	
 	
+//	
+//	//Apenas empréstimos com no mínimo 30% pagos devem ser exibidos.
+//	private Boolean verificaValorEmprestimoValido(Double valorEmprestimo, List<ParcelaEmprestimoDTO> parcelas) {
+//		List<ParcelaEmprestimoDTO> parcelasValidas = new ArrayList<ParcelaEmprestimoDTO>();
+//		boolean result = false;
+//		Double valorPago = 0.0;
+//		for (ParcelaEmprestimoDTO p : parcelas) {
+//			if (p.getStatus()) {
+//				valorPago = valorPago + p.getValor();
+//				parcelasValidas.add(p);
+//			}
+//		}
+//		if (valorPago >= valorEmprestimo * 0.3) {
+//			result = true;
+//		}
+//		return result;
+//	}
+//	
 	
-	//Apenas empréstimos com no mínimo 30% pagos devem ser exibidos.
-	private Boolean verificaValorEmprestimoValido(Double valorEmprestimo, List<ParcelaEmprestimoDTO> parcelas) {
-		List<ParcelaEmprestimoDTO> parcelasValidas = new ArrayList<ParcelaEmprestimoDTO>();
-		boolean result = false;
-		Double valorPago = 0.0;
-		for (ParcelaEmprestimoDTO p : parcelas) {
-			if (p.getStatus()) {
-				valorPago = valorPago + p.getValor();
-				parcelasValidas.add(p);
-			}
-		}
-		if (valorPago >= valorEmprestimo * 0.3) {
-			result = true;
-		}
-		return result;
-	}
+	//CASOS DE USO DO SPRINT 3
 	
-	public List<ContratoEmprestimoDTO> listaContratoEmprestimo(EmpregadoDTO empregado) {
-		List<ContratoEmprestimoDTO> contratos = contratosDAO.getContratoEmprestimos(empregado);
+	/**
+	 * Sprint 3
+		Carregar empréstimos na carteira de operadores de callcenter
+		Como: Supervisor de Callcenter
+		Quero: Localizar propostas passíveis de refinanciamento.
+		História: Supervisor localiza propostas de empréstimos passíveis de refinanciamento
+		- Apenas empréstimos com no mínimo 30% pagos devem ser exibidos.
+		- Exibir apenas os empréstimos que não estejam na carteira de nenhum operador.
+
+	 * @param empregado
+	 * @return
+	 * @throws Exception
+	 */
+	
+	public List<ContratoEmprestimoDTO> localizarPropostasPassiveisRefinanciamento() {
+		List<ContratoEmprestimoDTO> contratos = contratosDAO.localizarPropostasPassiveisRefinanciamento();
 		
-		List<ContratoEmprestimoDTO> contratosValidos = new ArrayList<ContratoEmprestimoDTO>();
-		for (ContratoEmprestimoDTO ctremp : contratos) {
-			if (ctremp.getRefinanciamentoHabilitado()) {
-				if (verificaValorEmprestimoValido(ctremp.getValorEmprestimo(), ctremp.getParcelas())) {
-					contratos.add(ctremp);
-				}
-			}
-		}
-		return contratosValidos;
+		
+		
+		return contratos;
 	}
+
+	/**
+	 * 
+	Como: Supervisor de Callcenter
+	Quero: Carregar empréstimos na carteira de operadores de callcenter
+	História: Supervisor localiza empréstimos passíveis de refinanciamento. Supervisor seleciona empréstimos a serem carregados na carteira de operador. Supervisor identifica o operador que receberá os empréstimos selecionados e confirma a operação
+	- Apenas o Supervisor de Callcenter pode executar esta operação.
 	
+	- Um empréstimo não pode ser carregado em outra carteira enquanto estiver na carteira de um determinado operador
+	
+	 * @param contratosEmprestimos
+	 * @param operador
+	 * @return
+	 */
+	public MensagemRetornoBeanWS carregarEmprestimosCarteiraOperador(List<ContratoEmprestimoDTO> contratosEmprestimos,FuncionarioDTO operador){
+		
+		MensagemRetornoBeanWS retorno = null;
+		
+		try{
+			contratosDAO.carregarEmprestimosCarteiraOperador(contratosEmprestimos,operador);
+		}catch (Exception e) {
+			log.error("Erro :", e);
+			retorno = new MensagemRetornoBeanWS(EnumMensagemRetorno.NOK);
+		}
+		
+		retorno = new MensagemRetornoBeanWS(EnumMensagemRetorno.OK);
+		return retorno;
+	}
 	
 }
 

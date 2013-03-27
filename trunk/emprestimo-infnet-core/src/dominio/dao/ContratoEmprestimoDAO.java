@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import servicos.enums.EnumStatusAnalise;
-
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.ConvenioDTO;
 import dominio.dto.EmpregadoDTO;
 import dominio.dto.EmpresaConvenenteDTO;
 import dominio.dto.FuncionarioDTO;
 import dominio.dto.InstituicaoFinanceiraDTO;
-import dominio.dto.ParcelaEmprestimoDTO;
 import dominio.dto.PerfilFuncionarioDTO;
 import dominio.dto.PlanoEmprestimoDTO;
 
@@ -23,6 +21,8 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3450244970210084606L;
+
+	private static final int PORCENTAGEM_MINIMA = 30;
 	
 	private static ContratoEmprestimoDAO instance = null;
 	
@@ -170,67 +170,17 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	c2.setStatusAnalise(1);
 	c2.setStatusAtivo(true);
 	
+	//Sprint 3 - localizar passiveis de refinanciamento
+	c2.setParcelasTotal(10);
+	c2.setParcelasPagas(5);
+	c2.setCarteiraOperador(null);
+	c2.setRefinanciamentoHabilitado(true);
+	
 	List<ContratoEmprestimoDTO> contratos = new ArrayList<ContratoEmprestimoDTO>();
 	contratos.add(c1);
 	contratos.add(c2);	
 	
-	
-	List<ParcelaEmprestimoDTO> parcelas = new ArrayList<ParcelaEmprestimoDTO>();
-	ParcelaEmprestimoDTO parcela1 = new ParcelaEmprestimoDTO();
-	parcela1.setId_parcela(2);
-	parcela1.setStatus(true);
-	parcela1.setValor(50.0);
-	parcela1.setVencimento(new Date(2012, 4, 22));
-	
-	ParcelaEmprestimoDTO parcela2 = new ParcelaEmprestimoDTO();
-	parcela2.setId_parcela(2);
-	parcela2.setStatus(true);
-	parcela2.setValor(50.0);
-	parcela2.setVencimento(new Date(2012, 5, 22));
-	
-	ParcelaEmprestimoDTO parcela3 = new ParcelaEmprestimoDTO();
-	parcela3.setId_parcela(2);
-	parcela3.setStatus(true);
-	parcela3.setValor(50.0);
-	parcela3.setVencimento(new Date(2012, 6, 22));
-	
-	ParcelaEmprestimoDTO parcela4 = new ParcelaEmprestimoDTO();
-	parcela4.setId_parcela(2);
-	parcela4.setStatus(true);
-	parcela4.setValor(50.0);
-	parcela4.setVencimento(new Date(2012, 7, 22));
-	
-	ParcelaEmprestimoDTO parcela5 = new ParcelaEmprestimoDTO();
-	parcela5.setId_parcela(2);
-	parcela5.setStatus(true);
-	parcela5.setValor(50.0);
-	parcela5.setVencimento(new Date(2012, 8, 22));
-	
-	ParcelaEmprestimoDTO parcela6 = new ParcelaEmprestimoDTO();
-	parcela6.setId_parcela(2);
-	parcela6.setStatus(true);
-	parcela6.setValor(50.0);
-	parcela6.setVencimento(new Date(2012, 9, 22));
-	
-	ParcelaEmprestimoDTO parcela7 = new ParcelaEmprestimoDTO();
-	parcela7.setId_parcela(2);
-	parcela7.setStatus(true);
-	parcela7.setValor(50.0);
-	parcela7.setVencimento(new Date(2012, 10, 22));
-	
-	parcelas.add(parcela1);
-	parcelas.add(parcela2);
-	parcelas.add(parcela3);
-	parcelas.add(parcela4);
-	parcelas.add(parcela5);
-	parcelas.add(parcela7);
-	
-	c1.setParcelas(parcelas);
-	
-	c1.setValorEmprestimo(350.0);
-	
-	
-//	mockContratoEmprestimos(contratos);
+
 	return contratos;
 	}
 	
@@ -281,6 +231,29 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	 * @param empregadoRequerente
 	 * @return
 	 */
+	public List<ContratoEmprestimoDTO> localizarPropostasPassiveisRefinanciamento() {
+		List<ContratoEmprestimoDTO> emprestimosCliente = new ArrayList<ContratoEmprestimoDTO>();
+		
+		for(ContratoEmprestimoDTO contrato : getContratoEmprestimos()){
+			//Refinanciamento habilitado e nao esta em carteira de operador
+			if(contrato.getRefinanciamentoHabilitado() && contrato.getCarteiraOperador() == null){
+				
+				if(isQuantidadeMinimaParcelasPagas(contrato))
+					emprestimosCliente.add(contrato);
+				
+			}
+				
+			
+		}
+		
+		return emprestimosCliente;
+	}
+	
+	/**
+	 * Retorna os emprestimos realizados pelo empregado passado.
+	 * @param empregadoRequerente
+	 * @return
+	 */
 	public List<ContratoEmprestimoDTO> getContratoEmprestimos(EmpregadoDTO empregadoRequerente) {
 		List<ContratoEmprestimoDTO> emprestimosCliente = new ArrayList<ContratoEmprestimoDTO>();
 		
@@ -297,6 +270,16 @@ public class ContratoEmprestimoDAO  implements Serializable{
 	}
 	
 	
+	private boolean isQuantidadeMinimaParcelasPagas(
+			ContratoEmprestimoDTO contrato) { 
+			if(contrato.getParcelasPagas() != null && contrato.getParcelasTotal() != null &&
+					
+					(contrato.getParcelasPagas() * 100/contrato.getParcelasTotal() >= PORCENTAGEM_MINIMA)){
+				return true;
+			}
+		return false;
+	}
+
 	public void salvarContratoEmprestimo(ContratoEmprestimoDTO contrato){
 		getContratoEmprestimos().add(contrato);
 	}
@@ -336,6 +319,18 @@ public class ContratoEmprestimoDAO  implements Serializable{
 				getContratoEmprestimos().add(emprestimoDTO);
 				break;
 			}
+		}
+		
+	}
+
+	public void carregarEmprestimosCarteiraOperador(
+			List<ContratoEmprestimoDTO> contratosEmprestimos,
+			FuncionarioDTO operador) {
+		
+		
+		for(ContratoEmprestimoDTO c : contratosEmprestimos){
+			c.setCarteiraOperador(operador);
+			atualizarContratoEmprestimo(c);
 		}
 		
 	}
