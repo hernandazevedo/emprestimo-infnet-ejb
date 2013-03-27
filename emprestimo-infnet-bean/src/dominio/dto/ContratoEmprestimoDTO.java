@@ -2,7 +2,6 @@ package dominio.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import servicos.enums.EnumStatusAnalise;
 
@@ -23,11 +22,12 @@ public class ContratoEmprestimoDTO implements Serializable{
 	private Date dataStatusAnalise;
 	private FuncionarioDTO funcionarioAnalise;
 	private Double valorEmprestimo;
-	private boolean carteiraOperador;
+	private FuncionarioDTO carteiraOperador;
+	
+	private Integer parcelasTotal;
+	private Integer parcelasPagas;
 	
 	
-	/*Lista de parcelas*/
-	private List<ParcelaEmprestimoDTO> parcelas;
 	
 	
 	public ContratoEmprestimoDTO(int id_contrato, EmpregadoDTO empregado,
@@ -167,13 +167,7 @@ public class ContratoEmprestimoDTO implements Serializable{
 		this.funcionarioAnalise = funcionarioAnalise;
 	}
 
-	public List<ParcelaEmprestimoDTO> getParcelas() {
-		return parcelas;
-	}
-
-	public void setParcelas(List<ParcelaEmprestimoDTO> parcelas) {
-		this.parcelas = parcelas;
-	}
+	
 
 	public Double getValorEmprestimo() {
 		return valorEmprestimo;
@@ -183,14 +177,26 @@ public class ContratoEmprestimoDTO implements Serializable{
 		this.valorEmprestimo = valorEmprestimo;
 	}
 
-	public boolean getCarteiraOperador() {
+	public FuncionarioDTO getCarteiraOperador() {
 		return carteiraOperador;
 	}
 
-	public void setCarteiraOperador(Boolean carteiraOperador) {
+	public void setCarteiraOperador(FuncionarioDTO carteiraOperador) {
 		this.carteiraOperador = carteiraOperador;
 	}
 	
+	public Integer getParcelasPagas() {
+		return parcelasPagas;
+	}
+	public void setParcelasPagas(Integer parcelasPagas) {
+		this.parcelasPagas = parcelasPagas;
+	}
+	public void setParcelasTotal(Integer parcelasTotal) {
+		this.parcelasTotal = parcelasTotal;
+	}
+	public Integer getParcelasTotal() {
+		return parcelasTotal;
+	}
 	
 	
 	

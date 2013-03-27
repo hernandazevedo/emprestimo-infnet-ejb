@@ -1,5 +1,3 @@
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -12,12 +10,14 @@ import org.junit.Test;
 
 import servicos.bean.MensagemRetornoBeanWS;
 import servicos.enums.EnumMensagemRetorno;
+import servicos.enums.EnumPerfilFuncionario;
 import servicos.enums.EnumStatusAnalise;
 import servicos.interfaces.Emprestimo;
 import dominio.dto.ContratoEmprestimoDTO;
 import dominio.dto.EmpregadoDTO;
+import dominio.dto.FuncionarioDTO;
 import dominio.dto.InstituicaoFinanceiraDTO;
-import dominio.dto.ParcelaEmprestimoDTO;
+import dominio.dto.PerfilFuncionarioDTO;
 import dominio.dto.PlanoEmprestimoDTO;
 
 
@@ -267,57 +267,50 @@ public class EmprestimoTest {
 	
 	
 	@Test
-	public void listarEmprestimosPagosValidosStprint3() {
+	public void localizarPropostasPassiveisRefinanciamentoSprint3() {
 		
 		try {
 			
 			initialContext = new InitialContext();
 			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
-	
-			ContratoEmprestimoDTO contrato = new ContratoEmprestimoDTO();
-			EmpregadoDTO empregado = new EmpregadoDTO(112,"William Vinco",true);
-			contrato.setValorEmprestimo(500.0);
-			contrato.setCarteiraOperador(true);
+			List<ContratoEmprestimoDTO> contratos = remote.localizarPropostasPassiveisRefinanciamento();
 			
-			List<ParcelaEmprestimoDTO> parcelas = new ArrayList<ParcelaEmprestimoDTO>();
-			for (int i = 0; i < 10; i++) {
-				ParcelaEmprestimoDTO p1 = new ParcelaEmprestimoDTO();
-				p1.setId_parcela(i);
-				p1.setStatus(true);
-				p1.setValor(50.0);
-				p1.setVencimento(new Date(2012, i+1, 5));
-				parcelas.add(p1);
-			}
 			
-			List<ContratoEmprestimoDTO> contratos = remote.listaContratoEmprestimo(empregado);
+			Assert.assertNotNull(contratos);
+			Assert.assertTrue(contratos.size() > 0);
 			
-			for (ContratoEmprestimoDTO contratoEmprestimoDTO : contratos) {
-				/*Verifica se o contrato tem refinanciamento habilitado */
-				Assert.assertEquals(true,contratoEmprestimoDTO.getRefinanciamentoHabilitado());
-				//verifica se o contrato emprestimo está na carteira de operador
-				Assert.assertEquals(true, contratoEmprestimoDTO.getCarteiraOperador());
-				
-				
-				/*valor total do contrato = 350.0
-				 * 30% = 105
-				 * 
-				 * Verifica se o emprestimo teve 30% ou mais do valor pago
-				*/
-				Double valorPago = 0.0;
-				for (ParcelaEmprestimoDTO parcela : contratoEmprestimoDTO.getParcelas()) {
-					if (parcela.getStatus()) {
-						valorPago = valorPago + parcela.getValor();
-					}
-				}
-				Assert.assertEquals(true, contratoEmprestimoDTO.getValorEmprestimo() * 0.3 >= valorPago);
-			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			log.error("Erro :", e);
 		}
 		
 		
 	}
+	
+
+	@Test
+	public void carregarEmprestimosCarteiraOperadorSprint3() {
+		MensagemRetornoBeanWS retorno = null;
+		try {
+			
+			initialContext = new InitialContext();
+			Emprestimo remote = (Emprestimo) initialContext.lookup(url);
+			List<ContratoEmprestimoDTO> contratos = remote.localizarPropostasPassiveisRefinanciamento();
+			FuncionarioDTO operadorReceberNaCarteira = new FuncionarioDTO();
+			operadorReceberNaCarteira.setPerfil(new PerfilFuncionarioDTO(EnumPerfilFuncionario.OPERADOR_CALLCENTER));
+			operadorReceberNaCarteira.setId_funcionario(334);
+			operadorReceberNaCarteira.setNome("Maria das coves");
+			
+			retorno = remote.carregarEmprestimosCarteiraOperador(contratos, operadorReceberNaCarteira);			
+		} catch (Exception e) {
+			log.error("Erro :", e);
+		}
+		 Assert.assertTrue(retorno != null);
+		 Assert.assertEquals(EnumMensagemRetorno.OK.getCodigo(), retorno.getCodigo());
+		
+	}
+	
+	
 	
 //	private static InitialContext configuraContext() throws NamingException {
 //		Properties props = new Properties();

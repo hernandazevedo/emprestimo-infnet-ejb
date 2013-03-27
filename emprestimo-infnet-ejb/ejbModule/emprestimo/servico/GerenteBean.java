@@ -80,7 +80,7 @@ public class GerenteBean implements Gerente {
 			preAprovarProposta(emprestimoDTO);
 		//RN5
 		}else if(emprestimoDTO.getStatusAnalise() == EnumStatusAnalise.REJEITADA.getStatusAnalise()){ 
-			
+			//MUNDANCA NO CASO DE USO NO SPRINT 3
 			rejeitarProposta(emprestimoDTO);
 		}else{
 			return new MensagemRetornoBeanWS(EnumMensagemRetorno.NOK);
@@ -91,18 +91,18 @@ public class GerenteBean implements Gerente {
 		return new MensagemRetornoBeanWS(EnumMensagemRetorno.OK);
 	}
 
-
+	//MUNDANCA NO CASO DE USO NO SPRINT 3
 	private void rejeitarProposta(ContratoEmprestimoDTO emprestimoDTO) {
 		emprestimoDTO.setStatusAtivo(false);
 		atualizarContratoEmprestimo(emprestimoDTO);
 		//RN3
 		enviarPropostaCallCenter(emprestimoDTO);
-		
+		//MUNDANCA NO CASO DE USO NO SPRINT 3
 		enviarEmailCliente(emprestimoDTO);
 		
 	}
 
-
+	//MUNDANCA NO CASO DE USO NO SPRINT 3
 	private void enviarEmailCliente(ContratoEmprestimoDTO emprestimoDTO) {
 		MensagemHtmlEmailDTO email = new MensagemHtmlEmailDTO();
 		email.setAssunto("Reprovação de proposta de emprestimo");
